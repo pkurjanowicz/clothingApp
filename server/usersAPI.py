@@ -15,3 +15,11 @@ def add_user():
     db.session.commit()
     return jsonify(success=True)
 
+
+@users_api.route('/checklogin', methods=['POST'])
+def check_user():
+    username = request.json["username"]
+    password = request.json["password"]
+    user = Users.query.filter_by(username=username).first()
+    if check_pw_hash(password, user.pw_hash):
+        return jsonify(session=user.username) #this is for use with the flask module "session"

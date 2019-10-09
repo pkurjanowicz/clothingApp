@@ -11,6 +11,13 @@ def add_vue_routes(app):
         """
         return(render_template('index.html'))
 
+    @app.route('/register')
+    def register_page():
+        """
+        Server our vue app
+        """
+        return(render_template('index.html'))
+
     @app.after_request
     def add_header(req):
         """
