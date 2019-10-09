@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <appname welcome="Clothing Match"/>
+    <registerPage register="Register"/>
   </div>
 </template>
 
 <script>
-import appname from './components/nav-bar.vue'
+import registerPage from './components/register.vue'
 
 export default {
   name: 'app',
   components: {
-    appname
+    registerPage
   }
 }
 </script>
