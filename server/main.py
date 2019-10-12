@@ -4,19 +4,25 @@ from app import create_app, setup_database
 
 def add_vue_routes(app):
 
-    @app.route('/')
-    def serve_vue_app():
-        """
-        Server our vue app
-        """
-        return(render_template('index.html'))
+    @app.route('/', defaults={'path': ''})
 
-    @app.route('/register')
-    def register_page():
-        """
-        Server our vue app
-        """
-        return(render_template('index.html'))
+    @app.route('/<path:path>')
+    def catch_all(path):
+        return render_template("index.html")
+
+    # @app.route('/')
+    # def serve_vue_app():
+    #     """
+    #     Server our vue app
+    #     """
+    #     return(render_template('index.html'))
+
+    # @app.route('/register')
+    # def register_page():
+    #     """
+    #     Server our vue app
+    #     """
+    #     return(render_template('index.html'))
 
     @app.after_request
     def add_header(req):

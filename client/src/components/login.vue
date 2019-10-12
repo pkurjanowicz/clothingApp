@@ -1,9 +1,9 @@
 <template>
     <div class="hello">
-        <h1>{{ login }}</h1>
+        <h1>{{ title }}</h1>
         <input type="text" v-model="username" placeholder="Username"/><br><br>
         <input type="password" v-model="password" placeholder="Password"/><br><br>
-        <button @click="addUser">Login</button><br><br>
+        <button @click="checkUser">Login</button><br><br>
     </div>
 </template>
 
@@ -12,7 +12,7 @@ import axios from "axios";
 
 export default {
   name: 'loginPage',
-  props: ['login'],
+  props: ['title'],
   data() {
     return {
       username: '',
@@ -20,8 +20,8 @@ export default {
     }
   },
   methods: {
-    addUser() {
-      axios.post('adduser', {
+    checkUser() {
+      axios.post('checklogin', {
         username: this.username, 
         password: this.password
         })

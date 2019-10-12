@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ register }}</h1>
+    <h1>{{ title }}</h1>
     <input type="text" v-model="username" placeholder="Username"/><br><br>
     <input type="password" v-model="password" placeholder="Password"/><br><br>
     <button @click="addUser">Register</button><br><br>
@@ -12,7 +12,7 @@ import axios from "axios";
 
 export default {
   name: 'registerPage',
-  props: ['register'],
+  props: ['title'],
   data() {
     return {
       username: '',
@@ -34,7 +34,7 @@ export default {
       this.username = '';
       this.password = '';
     }
-  }
+  },
 }
 </script>
 
