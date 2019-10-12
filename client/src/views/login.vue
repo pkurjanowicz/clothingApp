@@ -1,17 +1,17 @@
 <template>
-  <div class="hello">
-    <h1>{{ title }}</h1>
-    <input type="text" v-model="username" placeholder="Username"/><br><br>
-    <input type="password" v-model="password" placeholder="Password"/><br><br>
-    <button @click="addUser">Register</button><br><br>
-  </div>
+    <div class="login">
+        <h1>{{ title }}</h1>
+        <input type="text" v-model="username" placeholder="Username"/><br><br>
+        <input type="password" v-model="password" placeholder="Password"/><br><br>
+        <button @click="checkUser">Login</button><br><br>
+    </div>
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-  name: 'registerPage',
+  name: 'loginPage',
   props: ['title'],
   data() {
     return {
@@ -20,8 +20,8 @@ export default {
     }
   },
   methods: {
-    addUser() {
-      axios.post('adduser', {
+    checkUser() {
+      axios.post('checklogin', {
         username: this.username, 
         password: this.password
         })
@@ -34,7 +34,7 @@ export default {
       this.username = '';
       this.password = '';
     }
-  },
+  }
 }
 </script>
 
