@@ -5,7 +5,7 @@ const routerOptions = [
   { path: '/', 
     component: 'home', 
     props: {
-      title: 'Home Page' 
+      title: 'Home Page',
       },
     },
   { path: '/login', 
@@ -15,11 +15,11 @@ const routerOptions = [
     }
   },
   { path: '/register', 
-  component: 'register', 
-  props: {
-    title: 'Register' 
-  }
-}
+    component: 'register', 
+    props: {
+      title: 'Register' 
+    },
+  },
 ]
 const routes = routerOptions.map(route => {
   return {

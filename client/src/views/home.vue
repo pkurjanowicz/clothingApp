@@ -8,6 +8,7 @@
 
 <script>
 import axios from 'axios';
+var session = '{{ session }}';
 
 export default {
   name: 'homePage',
@@ -29,7 +30,8 @@ export default {
           },
         })
         .then(function (response) {
-        console.log(response);
+          //TODO insert code to send data to the database
+        console.log(response.data.data.link);
         })
         .catch(function (error) {
         console.log(error);
