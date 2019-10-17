@@ -10,38 +10,15 @@ def add_vue_routes(app):
     @app.route('/<path:path>')
     def catch_all(path):
         return render_template("index.html")
-    
-    # @app.route('/login')
-    # def catch_login_redirect():
-    #     return render_template('index.html')
-    
-    @app.route('/checklogin', methods=['POST', 'GET'])
-    def check_user():
-        if request.method == "POST":
-            session['user'] = ''
-            username = request.json["username"]
-            password = request.json["password"]
-            user = Users.query.filter_by(username=username).first()
-            if check_pw_hash(password, user.pw_hash):
-                session['user'] = True
-                return jsonify(session=True)
-        else:
-            return print('Hello')
 
-    # @app.route('/checksession', methods=["GET"])
-    # def check_session():
-    #     print(session['user'])
-    #     if session.get('user') == True:
-    #         return 'True'
-    #     return 'False'
 
-    # @app.after_request
-    # def add_header(req):
-    #     """
-    #     Clear Cache for hot-reloading
-    #     """
-    #     req.headers["Cache-Control"] = "no-cache"
-    #     return req
+    @app.after_request
+    def add_header(req):
+        """
+        Clear Cache for hot-reloading
+        """
+        req.headers["Cache-Control"] = "no-cache"
+        return req
     
     # @app.before_request
     # def require_login():

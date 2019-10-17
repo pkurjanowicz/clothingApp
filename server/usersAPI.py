@@ -6,6 +6,7 @@ from hashutils import make_pw_hash, check_pw_hash
 
 users_api = Blueprint('users_api', __name__)
 
+
 @users_api.route('/adduser', methods=['POST'])
 def add_user():
         username = request.json["username"]
@@ -16,16 +17,16 @@ def add_user():
         return jsonify(success=True)
 
 
-# @users_api.route('/checklogin', methods=['POST'])
-# def check_user():
-#         session['user'] = ''
-#         username = request.json["username"]
-#         password = request.json["password"]
-#         user = Users.query.filter_by(username=username).first()
-#         if check_pw_hash(password, user.pw_hash):
-#                 session['user'] = user.username
-#                 usernamesession = session['user']
-#                 return jsonify(session=usernamesession) #this is for use with the flask module "session"
+@users_api.route('/checklogin', methods=['POST'])
+def check_user():
+        session['user'] = ''
+        username = request.json["username"]
+        password = request.json["password"]
+        user = Users.query.filter_by(username=username).first()
+        if check_pw_hash(password, user.pw_hash):
+                session['user'] = user.username
+                usernamesession = session['user']
+                return jsonify(session=usernamesession) #this is for use with the flask module "session"
 
 @users_api.route("/logout", methods=["GET"])
 def logout():
@@ -33,10 +34,13 @@ def logout():
         return jsonify(success=True)
 
 
-# @users_api.route('/checksession', methods=["GET"])
-# def check_session():
-#         if not 'user' in session:
-#                 return 'Logged in '
-#         return 'You are not logged '
+@users_api.route('/checksession', methods=["GET"])
+def check_session():
+        if 'user' in session:
+                print("True")
+                return "True"
+        else:
+                print('false')
+                return "False"
 
 
