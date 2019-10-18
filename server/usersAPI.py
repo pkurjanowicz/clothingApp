@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, session, redirect, escape
 from sql_alchemy_db_instance import db
-from models import Users
+from models import Users, Images
 from hashutils import make_pw_hash, check_pw_hash
 
 
@@ -14,7 +14,10 @@ def add_user():
         new_user = Users(username=username,password=password)
         db.session.add(new_user)
         db.session.commit()
-        return jsonify(success=True)
+        user = Users.query.filter_by(username=username).first()
+        session['user'] = user.id
+        usernamesession = session['user']
+        return jsonify(session=usernamesession)
 
 
 @users_api.route('/checklogin', methods=['POST'])
@@ -43,5 +46,14 @@ def check_session():
                 )
         else:
                 return jsonify(session = False)
+
+@users_api.route('/addimage', methods=['POST', 'GET'])
+def add_image():
+        link = request.json["link"]
+        user_id = request.json["user_id"]
+        new_image = Images(link=link,user_id=user_id)
+        db.session.add(new_image)
+        db.session.commit()
+        return jsonify(success=True)
 
 

@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       file: '',
-      userSessionID: '',
+      userSessionID: null,
     }
   },
   methods: {
@@ -35,6 +35,16 @@ export default {
         })
         .then(function (response) {
           //TODO insert code to send data to the database
+          axios.post('/addimage', {
+              link: response.data.data.link,
+              user_id: this.userSessionID
+            })
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         console.log(response.data.data.link);
         })
         .catch(function (error) {

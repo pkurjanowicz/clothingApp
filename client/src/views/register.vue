@@ -9,6 +9,7 @@
 
 <script>
 import axios from "axios";
+import { isAuthenticated } from '../helpers.js'
 
 export default {
   name: 'registerPage',
@@ -33,6 +34,11 @@ export default {
       });
       this.username = '';
       this.password = '';
+      let userSessionName = isAuthenticated().then(data => { 
+        /* I am using this promise to delay the page load 
+        to not allow it to be redirected back to login path */
+        this.$router.push({ path: '/'})
+    })
     }
   },
 }

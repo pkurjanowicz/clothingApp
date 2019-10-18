@@ -20,12 +20,6 @@ def add_vue_routes(app):
         req.headers["Cache-Control"] = "no-cache"
         return req
     
-    # @app.before_request
-    # def require_login():
-    #     if not ('user' in session):
-    #         session['user'] = ''
-    #         return redirect('/login')
-    
 
 
 
