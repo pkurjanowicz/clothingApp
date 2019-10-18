@@ -5,7 +5,15 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(500))
     pw_hash = db.Column(db.String(500))
+    images = db.relationship('Images', backref='users', lazy=True)
 
     def __init__(self, username, password):
         self.username = username
         self.pw_hash = make_pw_hash(password)
+
+
+class Images(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    link = db.Column(db.String(120), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
+        nullable=False)

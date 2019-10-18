@@ -24,7 +24,7 @@ def check_user():
         password = request.json["password"]
         user = Users.query.filter_by(username=username).first()
         if check_pw_hash(password, user.pw_hash):
-                session['user'] = user.username
+                session['user'] = user.id
                 usernamesession = session['user']
                 return jsonify(session=usernamesession) #this is for use with the flask module "session"
 
@@ -37,10 +37,11 @@ def logout():
 @users_api.route('/checksession', methods=["GET"])
 def check_session():
         if 'user' in session:
-                print("True")
-                return "True"
+                return jsonify(
+                        session = True,
+                        user = session['user']
+                )
         else:
-                print('false')
-                return "False"
+                return jsonify(session = False)
 
 

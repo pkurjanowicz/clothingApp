@@ -3,11 +3,14 @@
         <h1>{{ title }}</h1>
           <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
           <button @click="addImage()">Submit</button>
+          <br><br>
+          <p>user session ID is: {{userSessionID}}</p>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { isAuthenticated } from '../helpers.js'
 var session = '{{ session }}';
 
 export default {
@@ -16,6 +19,7 @@ export default {
   data() {
     return {
       file: '',
+      userSessionID: '',
     }
   },
   methods: {
@@ -40,6 +44,15 @@ export default {
     handleFileUpload(){
         this.file = this.$refs.file.files[0];
     }
+  },
+  mounted() {
+    isAuthenticated().then(data => {
+      if (data['session'] === false) {
+        this.$router.push('/login')
+      } else {
+        this.userSessionID = data['user']
+      }
+    })
   }
 }
 </script>
