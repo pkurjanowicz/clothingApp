@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, session, redirect, escape
 from sql_alchemy_db_instance import db
 from models import Users, Images
 from hashutils import make_pw_hash, check_pw_hash
+import random
 
 
 users_api = Blueprint('users_api', __name__)
@@ -56,4 +57,13 @@ def add_image():
         db.session.commit()
         return jsonify(success=True)
 
+@users_api.route('/random-image', methods=['GET'])
+def get_random_image():
+        image = random.choice(Images.query.all())
+        return jsonify(image_link = image.link)
+        
 
+# Will use this route later to hide the client ID
+@users_api.route('/add-to-imgur', methods=['POST'])
+def add_to_imgur():
+        return jsonify(client_id = 'aeebe6e47294974')

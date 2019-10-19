@@ -26,10 +26,10 @@ export default {
         username: this.username, 
         password: this.password
         })
-        .then(function (response) {
+        .then(response => {
         console.log(response);
         })
-        .catch(function (error) {
+        .catch(error => {
         console.log(error);
       });
       this.username = '';

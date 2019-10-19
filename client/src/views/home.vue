@@ -5,6 +5,7 @@
           <button @click="addImage()">Submit</button>
           <br><br>
           <p>user session ID is: {{userSessionID}}</p>
+          <img :src="randomImage">
     </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
     return {
       file: '',
       userSessionID: null,
+      randomImage: null,
     }
   },
   methods: {
@@ -33,21 +35,21 @@ export default {
           'Content-Type': 'multipart/form-data'
           },
         })
-        .then(function (response) {
+        .then(response => {
           //TODO insert code to send data to the database
           axios.post('/addimage', {
               link: response.data.data.link,
               user_id: this.userSessionID
             })
-            .then(function (response) {
+            .then(response => {
               console.log(response);
             })
-            .catch(function (error) {
+            .catch(error => {
               console.log(error);
             });
         console.log(response.data.data.link);
         })
-        .catch(function (error) {
+        .catch(error => {
         console.log(error);
       });
     },
@@ -62,6 +64,11 @@ export default {
       } else {
         this.userSessionID = data['user']
       }
+    });
+    axios.get('/random-image')
+    .then(response => {
+        console.log(response.data.image_link);
+        this.randomImage = response.data.image_link
     })
   }
 }
