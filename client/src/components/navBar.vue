@@ -16,6 +16,7 @@ import { isAuthenticated } from '../helpers.js'
 export default {
   name: 'navBar',
   methods: {
+    // function deletes user's session and redirects to login page
     logOut() {
       axios.get('logout')
       .then(response => {

@@ -23,6 +23,7 @@ export default {
         }
     },
     methods: {
+        /* Gets all the user's liked images*/
         getLikedImages() {
             axios.post('/my-liked-images',{
                 user_id: this.userSessionID,
@@ -37,6 +38,7 @@ export default {
         }
     },
     mounted() {
+        /* checks the user session*/
         isAuthenticated().then(data => {
             if (data['session'] === false) {
             this.$router.push('/login')

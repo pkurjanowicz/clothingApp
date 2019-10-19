@@ -15,7 +15,6 @@
 <script>
 import axios from 'axios';
 import { isAuthenticated } from '../helpers.js'
-var session = '{{ session }}';
 
 export default {
   name: 'homePage',
@@ -28,6 +27,8 @@ export default {
     }
   },
   methods: {
+    /* This function adds an image to imgur via the 
+    API and then adds that image w/ user session to database */
     addImage() {
       let formData = new FormData();
       formData.append('image', this.file);
@@ -39,7 +40,6 @@ export default {
           },
         })
         .then(response => {
-          //TODO insert code to send data to the database
           axios.post('/addimage', {
               link: response.data.data.link,
               user_id: this.userSessionID
@@ -56,9 +56,13 @@ export default {
         console.log(error);
       });
     },
+    //this is bound to file input section in html
     handleFileUpload(){
         this.file = this.$refs.file.files[0];
     },
+    /* hits the endpoint like-image and adds that image
+    to the likedimage table using that user ID as a 
+    foreign key(linked to user table) */
     likeImage() {
       axios.post('like-image', {
         image_link: this.randomImage,
@@ -76,6 +80,8 @@ export default {
         console.log(error)
       })
     },
+    /* does the same thing as function 
+    above except deletes entry */
     dislikeImage() {
       axios.post('dislike-image', {
         image_link: this.randomImage,
@@ -91,9 +97,16 @@ export default {
       })
       .catch(error => {
         console.log(error)
+        axios.get('/random-image')
+        .then(response => {
+            console.log(response.data.image_link);
+            this.randomImage = response.data.image_link
+          })
       })
     }
   },
+  /* these functions run when page is loaded, check user 
+  session and get random image from image table in the db */
   mounted() {
     isAuthenticated().then(data => {
       if (data['session'] === false) {

@@ -23,6 +23,8 @@ export default {
         }
     },
     methods: {
+        /* gets all the images this user 
+        uploaded to images table in db*/ 
         getAddedImages() {
             axios.post('/all-my-images',{
                 user_id: this.userSessionID,
@@ -37,6 +39,7 @@ export default {
         }
     },
     mounted() {
+        /* checks the user session */
         isAuthenticated().then(data => {
             if (data['session'] === false) {
             this.$router.push('/login')

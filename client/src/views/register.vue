@@ -21,6 +21,8 @@ export default {
     }
   },
   methods: {
+    /* add a new user, note there is no 
+    client side validation in place yet...*/ 
     addUser() {
       axios.post('adduser', {
         username: this.username, 

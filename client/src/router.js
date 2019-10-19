@@ -2,6 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router';
 import axios from 'axios';
 
+/* this is creating all router paths. When a user lands on the path
+vue router will load component(this corresponds with the file names 
+  in "view" folder). Props are just data we want to pass to the 
+  html. */
 const routerOptions = [
   { path: '/', 
     component: 'home', 
@@ -34,6 +38,8 @@ const routerOptions = [
     },
   },
 ]
+/* this variable actually maps the 
+route to the component in the views folder*/
 const routes = routerOptions.map(route => {
   return {
     ...route,
@@ -42,6 +48,8 @@ const routes = routerOptions.map(route => {
 })
 Vue.use(VueRouter)
 
+/* this creates an instance 
+of vuerouter and exports it*/ 
 const router = new VueRouter({
   routes,
   mode: 'history'

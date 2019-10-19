@@ -21,6 +21,7 @@ export default {
     }
   },
   methods: {
+    /* authenticates the user in the db */
     checkUser() {
       axios.post('checklogin', {
         username: this.username, 
