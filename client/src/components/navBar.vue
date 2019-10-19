@@ -1,11 +1,11 @@
 <template>
     <div class="navbar">
-        <button><router-link to="/">Home</router-link></button><br><br>
-        <button><router-link to="/my-images">My Images</router-link></button><br><br>
-        <button><router-link to="/liked-images">My Liked Images</router-link></button><br><br>
-        <button><router-link to="/login">Login</router-link></button><br><br>
-        <button><router-link to="/register">Register</router-link></button><br><br>
-        <button @click="logOut">Logout</button><br><br>
+        <router-link to="/"><button class='navbar-btn'>Home</button></router-link>
+        <router-link to="/my-images"><button class='navbar-btn'>My Images</button></router-link>
+        <router-link to="/liked-images"><button class='navbar-btn'>My Liked Images</button></router-link>
+        <router-link to="/login"><button class='navbar-btn2'>Login</button></router-link>
+        <router-link to="/register"><button class='navbar-btn2'>Register</button></router-link>
+        <button @click="logOut" class='navbar-logout'>Logout</button><br><br>
     </div>
 </template>
 
