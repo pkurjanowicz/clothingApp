@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, session, redirect, escape
 from sql_alchemy_db_instance import db
-from models import Users, Images
+from models import Users, Images, LikedImages
 from hashutils import make_pw_hash, check_pw_hash
 import random
 
@@ -30,7 +30,7 @@ def check_user():
         if check_pw_hash(password, user.pw_hash):
                 session['user'] = user.id
                 usernamesession = session['user']
-                return jsonify(session=usernamesession) #this is for use with the flask module "session"
+                return jsonify(session=usernamesession) #this is used to pass session to vue
 
 @users_api.route("/logout", methods=["GET"])
 def logout():
@@ -61,6 +61,26 @@ def add_image():
 def get_random_image():
         image = random.choice(Images.query.all())
         return jsonify(image_link = image.link)
+
+@users_api.route('/like-image', methods=['POST'])
+def like_image():
+        image_link = request.json['image_link']
+        user_id = request.json['user_id']
+        # TODO Add in functionality to query LikedImages db to see if that entry already exists
+        new_like = LikedImages(image_link=image_link, user_id=user_id)
+        db.session.add(new_like)
+        db.session.commit()
+        return(jsonify(success=True))
+
+@users_api.route('/dislike-image', methods=['POST'])
+def dislike_image():
+        image_link = request.json['image_link']
+        user_id = request.json['user_id']
+        # TODO Add in functionality to query LikedImages db to see if that entry already exists
+        like_to_delete = LikedImages.query.filter_by(image_link=image_link, user_id=user_id).first()
+        db.session.delete(like_to_delete)
+        db.session.commit()
+        return(jsonify(success=True))
         
 
 # Will use this route later to hide the client ID

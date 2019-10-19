@@ -6,6 +6,9 @@
           <br><br>
           <p>user session ID is: {{userSessionID}}</p>
           <img :src="randomImage">
+          <br>
+          <button @click="likeImage()">Like</button>
+          <button @click="dislikeImage()">Dislike</button>
     </div>
 </template>
 
@@ -55,6 +58,30 @@ export default {
     },
     handleFileUpload(){
         this.file = this.$refs.file.files[0];
+    },
+    likeImage() {
+      axios.post('like-image', {
+        image_link: this.randomImage,
+        user_id: this.userSessionID
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    dislikeImage() {
+      axios.post('dislike-image', {
+        image_link: this.randomImage,
+        user_id: this.userSessionID
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   },
   mounted() {
