@@ -21,6 +21,12 @@ const routerOptions = [
       title: 'Register' 
     },
   },
+  { path: '/liked', 
+    component: 'liked', 
+    props: {
+      title: 'Liked Images' 
+    },
+  },
 ]
 const routes = routerOptions.map(route => {
   return {

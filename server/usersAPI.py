@@ -81,6 +81,13 @@ def dislike_image():
         db.session.delete(like_to_delete)
         db.session.commit()
         return(jsonify(success=True))
+
+@users_api.route('/all-images', methods=['POST'])
+def get_all_user_images():
+        user_id = request.json['user_id']
+        images = Images.query.filter_by(user_id=user_id).all()
+        image_links = [image.link for image in images]
+        return jsonify(images=image_links)
         
 
 # Will use this route later to hide the client ID

@@ -66,6 +66,11 @@ export default {
       })
       .then(response => {
         console.log(response)
+        axios.get('/random-image')
+          .then(response => {
+        console.log(response.data.image_link);
+        this.randomImage = response.data.image_link
+          })
       })
       .catch(error => {
         console.log(error)
@@ -78,6 +83,11 @@ export default {
       })
       .then(response => {
         console.log(response)
+        axios.get('/random-image')
+          .then(response => {
+            console.log(response.data.image_link);
+            this.randomImage = response.data.image_link
+          })
       })
       .catch(error => {
         console.log(error)
