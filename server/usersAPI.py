@@ -83,10 +83,18 @@ def dislike_image():
         return(jsonify(success=True))
 
 @users_api.route('/all-my-images', methods=['POST'])
-def get_all_user_images():
+def get_all_added_images():
         user_id = request.json['user_id']
         images = Images.query.filter_by(user_id=user_id).all()
         image_links = [image.link for image in images]
+        return jsonify(images=image_links)
+
+
+@users_api.route('/my-liked-images', methods=['POST'])
+def get_all_liked_images():
+        user_id = request.json['user_id']
+        images = LikedImages.query.filter_by(user_id=user_id).all()
+        image_links = [image.image_link for image in images]
         return jsonify(images=image_links)
         
 

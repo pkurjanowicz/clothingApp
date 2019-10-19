@@ -1,9 +1,9 @@
 <template>
-    <div class="myImages">
+    <div class="likedImages">
         <h1>{{ title }}</h1>
         <p>Session user ID is: {{userSessionID}}</p>
-        <button @click="getAddedImages()">Get My Images</button>
-        <li v-for="image in addedImages" :key='image'>
+        <button @click="getLikedImages()">Get Liked Images</button>
+        <li v-for="image in likedImages" :key='image'>
             <img :src="image">
         </li>
     </div>
@@ -14,22 +14,22 @@ import axios from "axios";
 import { isAuthenticated } from '../helpers.js'
 
 export default {
-    name: 'myImages',
+    name: 'likedImages',
     props: ['title'],
     data() {
         return {
         userSessionID: '',
-        addedImages: [],
+        likedImages: [],
         }
     },
     methods: {
-        getAddedImages() {
-            axios.post('/all-my-images',{
+        getLikedImages() {
+            axios.post('/my-liked-images',{
                 user_id: this.userSessionID,
             })
                 .then(response => {
                 console.log(response);
-                this.addedImages = response.data.images
+                this.likedImages = response.data.images
             })
                 .catch(error => {
                 console.log(error)

@@ -27,6 +27,12 @@ const routerOptions = [
       title: 'My Added Images' 
     },
   },
+  { path: '/liked-images', 
+    component: 'liked-images', 
+    props: {
+      title: 'My Liked Images' 
+    },
+  },
 ]
 const routes = routerOptions.map(route => {
   return {
