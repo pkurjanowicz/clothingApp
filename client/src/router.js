@@ -21,10 +21,10 @@ const routerOptions = [
       title: 'Register' 
     },
   },
-  { path: '/liked', 
-    component: 'liked', 
+  { path: '/my-images', 
+    component: 'my-images', 
     props: {
-      title: 'Liked Images' 
+      title: 'My Added Images' 
     },
   },
 ]

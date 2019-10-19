@@ -82,7 +82,7 @@ def dislike_image():
         db.session.commit()
         return(jsonify(success=True))
 
-@users_api.route('/all-images', methods=['POST'])
+@users_api.route('/all-my-images', methods=['POST'])
 def get_all_user_images():
         user_id = request.json['user_id']
         images = Images.query.filter_by(user_id=user_id).all()
