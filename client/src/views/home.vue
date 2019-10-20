@@ -1,12 +1,16 @@
 <template>
     <div class="home">
-        <!-- <h1>{{ title }}</h1>
-          <p>user session ID is: {{userSessionID}}</p> -->
+        <h1>{{ title }}</h1>
+          <p>user session ID is: {{userSessionID}}</p>
           <img :src="randomImage">
           <br>
           <div class="like-dislike-btns">
             <button @click="likeImage()">Like</button>
             <button @click="dislikeImage()">Dislike</button>
+          </div>
+          <div class="match-success" >
+            <h2 v-if="matchSuccess" >There is a successful match!!</h2>
+            <h2  v-else >There is no match :(</h2>
           </div>
     </div>
 </template>
@@ -24,43 +28,22 @@ export default {
       userSessionID: null,
       randomImage: null,
       successfulUpload: '',
+      matchSuccess: '',
     }
   },
   methods: {
-    /* This function adds an image to imgur via the 
-    API and then adds that image w/ user session to database */
-    addImage() {
-      let formData = new FormData();
-      formData.append('image', this.file);
-      console.log('>> formData >> ', formData);
-      axios.post('https://api.imgur.com/3/image', formData, {
-        headers: {
-          'Authorization': 'Client-ID aeebe6e47294974',
-          'Content-Type': 'multipart/form-data'
-          },
+    findMatch() {
+        axios.post('/find-match', {
+          liker_id: this.userSessionID,
+          image_link: this.randomImage,
         })
         .then(response => {
-          axios.post('/addimage', {
-              link: response.data.data.link,
-              user_id: this.userSessionID
-            })
-            .then(response => {
-              console.log(response);
-              this.successfulUpload = 'Success!'
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        console.log(response.data.data.link);
+          this.matchSuccess = response.data['liked_image']
         })
         .catch(error => {
-        console.log(error);
-      });
-    },
-    //this is bound to file input section in html
-    handleFileUpload(){
-        this.file = this.$refs.file.files[0];
-    },
+          console.log(error)
+        })
+      },
     /* hits the endpoint like-image and adds that image
     to the likedimage table using that user ID as a 
     foreign key(linked to user table) */
@@ -75,6 +58,7 @@ export default {
           .then(response => {
         console.log(response.data.image_link);
         this.randomImage = response.data.image_link
+        this.findMatch()
           })
       })
       .catch(error => {

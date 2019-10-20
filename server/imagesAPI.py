@@ -53,6 +53,19 @@ def get_all_added_images():
         return jsonify(images=image_links)
 
 #gets all the users liked images
+@images_api.route('/find-match', methods=['POST'])
+def find_match():
+        liker_id = request.json['liker_id']
+        image_link = request.json['image_link']
+        image_owner = Images.query.filter_by(link=image_link).first()
+        owner_liked_liker = LikedImages.query.filter_by(image_link=image_owner.link).first()
+        if owner_liked_liker.user_id != '':
+                return jsonify(match=True, 
+                liked_image=owner_liked_liker.user_id)
+        else:
+                return jsonify(match=False)
+        
+
 @images_api.route('/my-liked-images', methods=['POST'])
 def get_all_liked_images():
         user_id = request.json['user_id']
