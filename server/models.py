@@ -31,4 +31,4 @@ class LikedImages(db.Model):
         nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
-    isliked = db.Column(db.Boolean, default=True, nullable=False)
+    owner_id = db.Column(db.Integer, nullable=False)

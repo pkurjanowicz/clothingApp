@@ -16,19 +16,27 @@ def add_image():
         db.session.commit()
         return jsonify(success=True)
 
-#gets a random image
-@images_api.route('/random-image', methods=['GET'])
+#gets a random image, this only returns 
+# other user's images, not the user logged in's images
+@images_api.route('/random-image', methods=['GET', 'POST'])
 def get_random_image():
-        image = random.choice(Images.query.all())
-        return jsonify(image_link = image.link)
+        user_id = request.json['user_id']
+        id_list_object = Images.query.all()
+        id_list = [value.user_id for value in id_list_object]
+        new_list = list(filter(lambda a: a != user_id, id_list))
+        user_id = random.choice(new_list)
+        images = Images.query.filter_by(user_id=user_id).all()
+        image_link_list = [image.link for image in images]
+        return jsonify(image_link = random.choice(image_link_list))
 
 #adds a liked image to db
 @images_api.route('/like-image', methods=['POST'])
 def like_image():
         image_link = request.json['image_link']
         user_id = request.json['user_id']
+        owner_id = Images.query.filter_by(link=image_link).first().user_id
         # TODO Add in functionality to query LikedImages db to see if that entry already exists
-        new_like = LikedImages(image_link=image_link, user_id=user_id)
+        new_like = LikedImages(image_link=image_link, user_id=user_id, owner_id=owner_id)
         db.session.add(new_like)
         db.session.commit()
         return(jsonify(success=True))
@@ -57,11 +65,11 @@ def get_all_added_images():
 def find_match():
         liker_id = request.json['liker_id']
         image_link = request.json['image_link']
-        image_owner = Images.query.filter_by(link=image_link).first()
-        owner_liked_liker = LikedImages.query.filter_by(image_link=image_owner.link).first()
-        if owner_liked_liker.user_id != '':
+        image_owner_id = LikedImages.query.filter_by(image_link=image_link).first().owner_id
+        owner_liked_liker_image = LikedImages.query.filter_by(owner_id=liker_id, user_id=image_owner_id).first().owner_id
+        if owner_liked_liker_image != '':
                 return jsonify(match=True, 
-                liked_image=owner_liked_liker.user_id)
+                liked_image=owner_liked_liker_image)
         else:
                 return jsonify(match=False)
         

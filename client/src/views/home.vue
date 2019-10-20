@@ -54,7 +54,9 @@ export default {
       })
       .then(response => {
         console.log(response)
-        axios.get('/random-image')
+        axios.post('/random-image',{
+          user_id: this.userSessionID
+        })
           .then(response => {
         console.log(response.data.image_link);
         this.randomImage = response.data.image_link
@@ -74,7 +76,9 @@ export default {
       })
       .then(response => {
         console.log(response)
-        axios.get('/random-image')
+        axios.post('/random-image',{
+          user_id: this.userSessionID
+        })
           .then(response => {
             console.log(response.data.image_link);
             this.randomImage = response.data.image_link
@@ -82,7 +86,9 @@ export default {
       })
       .catch(error => {
         console.log(error)
-        axios.get('/random-image')
+        axios.post('/random-image',{
+          user_id: this.userSessionID
+        })
         .then(response => {
             console.log(response.data.image_link);
             this.randomImage = response.data.image_link
@@ -98,13 +104,16 @@ export default {
         this.$router.push('/login')
       } else {
         this.userSessionID = data['user']
-      }
-    });
-    axios.get('/random-image')
-    .then(response => {
+        axios.post('/random-image',{
+          user_id: this.userSessionID
+        })
+        .then(response => {
         console.log(response.data.image_link);
         this.randomImage = response.data.image_link
-    })
+        })
+      }
+    });
+    
   }
 }
 </script>
