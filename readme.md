@@ -1,8 +1,8 @@
-#Clothing App
+# Clothing App
 The main function of this app is to allow users to upload images and then display those images to them. 
 Liking images and disliking images will also allow users to find those images later
 
-##Installation
+## Installation
 Make sure you install all dependancies in the pipfile and package.json file. 
 I used pipenv as the virtual environment for this project.
 
