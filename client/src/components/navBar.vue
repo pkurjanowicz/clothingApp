@@ -1,11 +1,12 @@
 <template>
     <div class="navbar">
         <router-link to="/"><button class='navbar-btn'>Home</button></router-link>
+        <router-link to="/upload"><button class='navbar-btn'>Upload</button></router-link>
         <router-link to="/my-images"><button class='navbar-btn'>My Images</button></router-link>
         <router-link to="/liked-images"><button class='navbar-btn'>My Liked Images</button></router-link>
-        <router-link to="/login"><button class='navbar-btn2'>Login</button></router-link>
-        <router-link to="/register"><button class='navbar-btn2'>Register</button></router-link>
-        <button @click="logOut" class='navbar-logout'>Logout</button><br><br>
+        <!-- <router-link to="/login"><button class='navbar-btn2'>Login</button></router-link>
+        <router-link to="/register"><button class='navbar-btn2'>Register</button></router-link> -->
+        <a href=''><button @click="logOut" class='navbar-logout'>Logout</button></a>
     </div>
 </template>
 

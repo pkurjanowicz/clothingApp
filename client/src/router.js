@@ -37,6 +37,12 @@ const routerOptions = [
       title: 'My Liked Images' 
     },
   },
+  { path: '/upload', 
+    component: 'upload', 
+    props: {
+      title: 'Upload' 
+    },
+  },
 ]
 /* this variable actually maps the 
 route to the component in the views folder*/

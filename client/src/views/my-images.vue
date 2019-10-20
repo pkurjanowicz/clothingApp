@@ -3,9 +3,12 @@
         <h1>{{ title }}</h1>
         <p>Session user ID is: {{userSessionID}}</p>
         <button @click="getAddedImages()">Get My Images</button>
-        <li v-for="image in addedImages" :key='image'>
-            <img :src="image">
-        </li>
+        <p v-if="message">{{ message }}</p>
+        <div class="images-box">
+            <li v-for="image in addedImages" :key='image'>
+                <img :src="image">
+            </li>
+        </div>
     </div>
 </template>
 
@@ -20,6 +23,7 @@ export default {
         return {
         userSessionID: '',
         addedImages: [],
+        message: '',
         }
     },
     methods: {
@@ -32,6 +36,9 @@ export default {
                 .then(response => {
                 console.log(response);
                 this.addedImages = response.data.images
+                if (response.data.images.length === 0) {
+                    this.message = 'No uploaded images yet'
+                }
             })
                 .catch(error => {
                 console.log(error)

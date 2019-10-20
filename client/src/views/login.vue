@@ -1,10 +1,13 @@
 <template>
-    <div class="login">
+  <div class="login-box">
+    <div class="login-form">
         <h1>{{ title }}</h1>
-        <input type="text" v-model="username" placeholder="Username"/><br><br>
-        <input type="password" v-model="password" placeholder="Password"/><br><br>
-        <button @click="checkUser">Login</button><br><br>
+        <input type="text" v-model="username" placeholder="Username"/>
+        <input type="password" v-model="password" placeholder="Password"/>
+        <button @click="checkUser">Login</button>
+        <div><router-link to="/register">Register</router-link></div>
     </div>
+  </div>
 </template>
 
 <script>

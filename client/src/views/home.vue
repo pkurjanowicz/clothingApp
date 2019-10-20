@@ -1,14 +1,13 @@
 <template>
     <div class="home">
-        <h1>{{ title }}</h1>
-          <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-          <button @click="addImage()">Submit</button>
-          <br><br>
-          <p>user session ID is: {{userSessionID}}</p>
+        <!-- <h1>{{ title }}</h1>
+          <p>user session ID is: {{userSessionID}}</p> -->
           <img :src="randomImage">
           <br>
-          <button @click="likeImage()">Like</button>
-          <button @click="dislikeImage()">Dislike</button>
+          <div class="like-dislike-btns">
+            <button @click="likeImage()">Like</button>
+            <button @click="dislikeImage()">Dislike</button>
+          </div>
     </div>
 </template>
 
@@ -24,6 +23,7 @@ export default {
       file: '',
       userSessionID: null,
       randomImage: null,
+      successfulUpload: '',
     }
   },
   methods: {
@@ -46,6 +46,7 @@ export default {
             })
             .then(response => {
               console.log(response);
+              this.successfulUpload = 'Success!'
             })
             .catch(error => {
               console.log(error);

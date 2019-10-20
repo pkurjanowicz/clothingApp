@@ -3,9 +3,12 @@
         <h1>{{ title }}</h1>
         <p>Session user ID is: {{userSessionID}}</p>
         <button @click="getLikedImages()">Get Liked Images</button>
-        <li v-for="image in likedImages" :key='image'>
-            <img :src="image">
-        </li>
+        <p v-if="message">{{ message }}</p>
+        <div class="images-box">
+            <li v-for="image in likedImages" :key='image'>
+                <img :src="image">
+            </li>
+        </div>
     </div>
 </template>
 
@@ -20,6 +23,7 @@ export default {
         return {
         userSessionID: '',
         likedImages: [],
+        message: '',
         }
     },
     methods: {
@@ -31,6 +35,9 @@ export default {
                 .then(response => {
                 console.log(response);
                 this.likedImages = response.data.images
+                if (response.data.images.length === 0) {
+                    this.message = 'No liked images yet'
+                }
             })
                 .catch(error => {
                 console.log(error)
@@ -46,7 +53,7 @@ export default {
             this.userSessionID = data['user']
         }
         })
-    }
+    },
 }
 </script>
 

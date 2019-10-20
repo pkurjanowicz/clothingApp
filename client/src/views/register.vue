@@ -1,10 +1,13 @@
 <template>
-  <div class="register">
+<div class=register-box>
+  <div class="register-form">
     <h1>{{ title }}</h1>
     <input type="text" v-model="username" placeholder="Username"/><br><br>
-    <input type="password" v-model="password" placeholder="Password"/><br><br>
-    <button @click="addUser">Register</button><br><br>
+    <input type="password" v-model="password" placeholder="Password"/>
+    <button @click="addUser">Register</button>
+    <div><router-link to="/login">Already have an account?</router-link></div>
   </div>
+</div>
 </template>
 
 <script>
