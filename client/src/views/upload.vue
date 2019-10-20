@@ -1,7 +1,7 @@
 <template>
     <div class="upload">
-        <h1>{{ title }}</h1>
-        <p>user session ID is: {{userSessionID}}</p>
+        <!-- <h1>{{ title }}</h1>
+        <p>user session ID is: {{userSessionID}}</p> -->
           <label class="custom-file-upload">
             Upload Image
             <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/><br><br>

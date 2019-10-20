@@ -6,7 +6,7 @@
         <router-link to="/liked-images"><button class='navbar-btn'>My Liked Images</button></router-link>
         <!-- <router-link to="/login"><button class='navbar-btn2'>Login</button></router-link>
         <router-link to="/register"><button class='navbar-btn2'>Register</button></router-link> -->
-        <a href=''><button @click="logOut" class='navbar-logout'>Logout</button></a>
+        <a href='' class="logout-slide-right"><button @click="logOut" class='navbar-logout'>Logout</button></a>
     </div>
 </template>
 
