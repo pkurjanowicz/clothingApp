@@ -20,7 +20,7 @@ export default {
     }
   },
   components: {
-    'navBar': navBar
+    'navBar': navBar,
   },
   /* this checks to make sure the path isn't login or register and then it will show the navbar*/
   computed: {

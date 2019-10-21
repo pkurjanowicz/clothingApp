@@ -4,6 +4,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+
 /* just creating vue instance w/ router */
 new Vue({
   router,

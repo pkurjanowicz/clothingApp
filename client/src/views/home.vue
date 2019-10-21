@@ -1,27 +1,35 @@
 <template>
     <div class="home">
-        <h1>{{ title }}</h1>
-          <p>user session ID is: {{userSessionID}}</p>
-          <img :src="randomImage">
-          <br>
-          <div class="like-dislike-btns">
-            <button @click="likeImage()">Like</button>
-            <button @click="dislikeImage()">Dislike</button>
-          </div>
-          <div class="match-success" >
-            <h2 v-if="matchSuccess" >There is a successful match!!</h2>
-            <h2  v-else >There is no match :(</h2>
-          </div>
+      <!-- <h1>{{ title }}</h1>
+        <p>user session ID is: {{userSessionID}}</p> -->
+        <img :src="randomImage">
+        <br>
+        <div class="like-dislike-btns">
+          <button @click="likeImage()">Like</button>
+          <button @click="dislikeImage()">Dislike</button>
+        </div>
+        <!-- <div class="match-success" >
+          <h2 v-if="matchSuccess" >There is a successful match!!</h2>
+          <h2  v-else >There is no match :(</h2>
+        </div> -->
+        <div>
+          <modal v-if="isModalVisible" @close="closeModal()"/>
+        </div>
     </div>
 </template>
+
 
 <script>
 import axios from 'axios';
 import { isAuthenticated } from '../helpers.js'
+import modal from '/Users/peterkurjanowicz/Desktop/Interesting Projects/clothing_match_app/clothing_match_app/client/src/components/modal.vue';
 
 export default {
   name: 'homePage',
   props: ['title'],
+  components: {
+      modal,
+    },
   data() {
     return {
       file: '',
@@ -29,9 +37,13 @@ export default {
       randomImage: null,
       successfulUpload: '',
       matchSuccess: '',
+      isModalVisible: false,
     }
   },
   methods: {
+    closeModal() {
+      this.isModalVisible = false;
+    },
     findMatch() {
         axios.post('/find-match', {
           liker_id: this.userSessionID,
@@ -39,6 +51,14 @@ export default {
         })
         .then(response => {
           this.matchSuccess = response.data['liked_image']
+          console.log(this.matchSuccess)
+          let userSessionName = isAuthenticated().then(data => {
+            /* I am using this promise to delay the page load 
+            to not allow it to be redirected back to login path */
+            if (this.matchSuccess != '') {
+            this.isModalVisible = true;
+          }
+          })
         })
         .catch(error => {
           console.log(error)

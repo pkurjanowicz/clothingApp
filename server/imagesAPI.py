@@ -65,7 +65,8 @@ def get_all_added_images():
 def find_match():
         liker_id = request.json['liker_id']
         image_link = request.json['image_link']
-        image_owner_id = LikedImages.query.filter_by(image_link=image_link).first().owner_id
+        image_owner_id = LikedImages.query.filter_by(image_link=image_link).first()
+        image_owner_id = image_owner_id.owner_id
         owner_liked_liker_image = LikedImages.query.filter_by(owner_id=liker_id, user_id=image_owner_id).first().owner_id
         if owner_liked_liker_image != '':
                 return jsonify(match=True, 
