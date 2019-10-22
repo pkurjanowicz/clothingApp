@@ -43,6 +43,12 @@ const routerOptions = [
       title: 'Upload' 
     },
   },
+  { path: '/messages', 
+    component: 'messages', 
+    props: {
+      title: 'Your Messages' 
+    },
+  },
 ]
 /* this variable actually maps the 
 route to the component in the views folder*/

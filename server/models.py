@@ -32,3 +32,9 @@ class LikedImages(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
+
+class Messages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(600),nullable=False)
+    first_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    second_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

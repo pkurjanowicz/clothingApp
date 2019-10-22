@@ -8,10 +8,6 @@
           <button @click="likeImage()">Like</button>
           <button @click="dislikeImage()">Dislike</button>
         </div>
-        <!-- <div class="match-success" >
-          <h2 v-if="matchSuccess" >There is a successful match!!</h2>
-          <h2  v-else >There is no match :(</h2>
-        </div> -->
         <div>
           <modal v-if="isModalVisible" @close="closeModal()"/>
         </div>
@@ -52,13 +48,9 @@ export default {
         .then(response => {
           this.matchSuccess = response.data['liked_image']
           console.log(this.matchSuccess)
-          let userSessionName = isAuthenticated().then(data => {
-            /* I am using this promise to delay the page load 
-            to not allow it to be redirected back to login path */
             if (this.matchSuccess != '') {
             this.isModalVisible = true;
           }
-          })
         })
         .catch(error => {
           console.log(error)

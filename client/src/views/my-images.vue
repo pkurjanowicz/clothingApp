@@ -1,7 +1,5 @@
 <template>
     <div class="myImages">
-        <!-- <h1>{{ title }}</h1>
-        <p>Session user ID is: {{userSessionID}}</p> -->
         <button @click="getAddedImages()">Get My Images</button>
         <p v-if="message">{{ message }}</p>
         <div class="images-box">

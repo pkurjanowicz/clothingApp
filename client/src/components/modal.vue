@@ -5,8 +5,8 @@
         <slot name="body">
           You've Got a Match!
         </slot>
-       </section>
-       <footer class="modal-footer">
+      </section>
+      <footer class="modal-footer">
           <slot name="footer">
             <button
               type="button"

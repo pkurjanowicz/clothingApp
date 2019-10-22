@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, session, redirect, escape
 from sql_alchemy_db_instance import db
 from models import Users, Images, LikedImages
 import random
+import time
 
 #allows me to use images_api as the blueprint for app
 images_api = Blueprint('images_api', __name__)
@@ -39,6 +40,7 @@ def like_image():
         new_like = LikedImages(image_link=image_link, user_id=user_id, owner_id=owner_id)
         db.session.add(new_like)
         db.session.commit()
+        # time.sleep(5)
         return(jsonify(success=True))
 
 #deletes the liked image if it exists in db
@@ -66,13 +68,13 @@ def find_match():
         liker_id = request.json['liker_id']
         image_link = request.json['image_link']
         image_owner_id = LikedImages.query.filter_by(image_link=image_link).first()
+        if not image_owner_id:
+                return jsonify(match=False)
         image_owner_id = image_owner_id.owner_id
         owner_liked_liker_image = LikedImages.query.filter_by(owner_id=liker_id, user_id=image_owner_id).first().owner_id
         if owner_liked_liker_image != '':
-                return jsonify(match=True, 
-                liked_image=owner_liked_liker_image)
-        else:
-                return jsonify(match=False)
+                return jsonify(match=True, liked_image=owner_liked_liker_image)
+        return jsonify(match=False)
         
 
 @images_api.route('/my-liked-images', methods=['POST'])
