@@ -3,7 +3,7 @@ The main function of this app is to allow users to upload images and then displa
 Liking images and disliking images will also allow users to find those images later
 
 ## Installation
-Make sure you install all dependancies in the pipfile and package.json file. 
+Make sure you install all dependancies in the pipfile and package.json file. ```npm install```
 I used pipenv as the virtual environment for this project.
 
 ## Usage
