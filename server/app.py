@@ -3,6 +3,7 @@ from flask import Flask, session, current_app
 from sql_alchemy_db_instance import db
 from usersAPI import users_api
 from imagesAPI import images_api
+from messagesAPI import messages_api
 from secrets import secret_key
 
 # creats the correct path for the db file
@@ -24,6 +25,7 @@ def create_app():
     db.init_app(app)
     app.register_blueprint(users_api)
     app.register_blueprint(images_api)
+    app.register_blueprint(messages_api)
     app.secret_key = secret_key
     return app
 
