@@ -30,3 +30,76 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.navbar {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 6% 0;
+}
+
+.navbar-btn {
+    padding: 20px;
+    height: 100%;
+    background-color: grey;
+    font-size: 15px;
+    color: white;
+    border: 3px;
+    border-color: grey;
+    border-style: solid;
+}
+
+.navbar-btn2 {
+    background-color: #DA3548;
+    padding: 20px;
+    color: white;
+    font-size: 15px;
+    height: 100%;
+    border: 3px;
+    border-color: #DA3548;
+    border-style: solid;
+}
+
+.navbar-logout {
+    background-color: #DA3548;
+    padding: 20px;
+    color: white;
+    font-size: 15px;
+    height: 100%;
+    border: 3px;
+    border-color: #DA3548;
+    border-style: solid;
+}
+
+.logout-slide-right {
+    margin-left: auto;
+    order: 2;
+}
+
+.navbar-btn:hover {
+    background-color: white;
+    border: 3px;
+    border-color:  grey;
+    border-style: solid;
+    color: grey;
+    transition-duration: .3s;
+}
+
+.navbar-btn2:hover {
+    background-color: white;
+    border: 3px;
+    border-color:  #DA3548;
+    border-style: solid;
+    color: #DA3548;
+    transition-duration: .3s;
+}
+
+.navbar-logout:hover {
+    background-color: white;
+    border: 3px;
+    border-color:  #DA3548;
+    border-style: solid;
+    color: #DA3548;
+    transition-duration: .3s;
+}
+</style>

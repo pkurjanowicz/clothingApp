@@ -48,5 +48,33 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.login-box {
+    height: 420px;
+    width: 300px;
+    margin: 10% 42%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 15%;
+}
+
+.login-form h1 {
+    text-align: center;
+    margin: 0 0 30%;
+}
+
+.login-form div {
+    padding: 10% 0;
+}
+.login-form div a {
+    color: #DA3548;
+    font-size: 13px;
+}
+.login-form button {
+    margin: 10% 0 0 ;
+}
 </style>

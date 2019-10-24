@@ -129,3 +129,26 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3% 0 0 0;
+}
+.home img {
+    object-fit: contain;
+}
+
+.like-dislike-btns {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+}
+.like-dislike-btns button {
+    margin: 3px;
+}
+</style>

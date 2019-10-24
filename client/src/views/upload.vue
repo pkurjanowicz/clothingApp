@@ -77,3 +77,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 12px 4px 12px;
+    cursor: pointer;
+}
+
+
+.upload {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+</style>

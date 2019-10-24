@@ -57,5 +57,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.images-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3% 0 0 0;
+}
 </style>
