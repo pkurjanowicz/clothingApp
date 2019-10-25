@@ -28,3 +28,12 @@ def add_message():
     db.session.add(new_message)
     db.session.commit()
     return jsonify(message=new_message.message)
+
+@messages_api.route('/get_all_messages', methods=['POST'])
+def get_all_messages():
+    current_user_id = request.json["current_user_id"]
+    sent_messages = Messages.query.filter_by(first_user_id=current_user_id).all()
+    recieved_messages = Messages.query.filter_by(second_user_id=current_user_id).all()
+    total_messages_objects = sent_messages + recieved_messages
+    total_messages = [message.message for message in total_messages_objects]
+    return jsonify(messages=total_messages)
