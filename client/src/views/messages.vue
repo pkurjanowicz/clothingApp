@@ -4,8 +4,8 @@
         <div v-if="userNamesCurrentUserCanMessage.length != 0">
             <h3>Who do you want to message?</h3><br>
             <textarea v-model="message" rows="4" cols="50" >Input your message here</textarea><br>
-            <select v-model="secondUserName" v-for="user in userNamesCurrentUserCanMessage" :key="user">
-                <option>{{ user }}</option>
+            <select v-model="secondUserName" >
+                <option :value='user' v-for="user in userNamesCurrentUserCanMessage" :key="user">{{ user }}</option>
             </select><br><br><br>
             <button @click="submitMessage" type="submit">Send</button>
         </div>
