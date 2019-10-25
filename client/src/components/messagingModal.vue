@@ -3,13 +3,19 @@
     <div class="modal">
       <section class="modal-body">
         <slot name="body">
-          You've Got a Match!
+          Messages from
+          {{ username }}<br><br>
+          <textarea v-model='message' rows="4" cols="50" >Input your message here</textarea><br>
+          <button @click="submitMessage" type="submit" >Send</button>
+          <button @click="getMessages"> Get Messages</button><br>
+          <ul v-for='messageValue in messages' :key='messageValue'>
+            <li>{{ messageValue }}</li>
+          </ul><br>
         </slot>
       </section>
       <footer class="modal-footer">
           <slot name="footer">
-            <button type="button" @click="close">Close
-          </button>
+            <button @click="close"> Close</button>
         </slot>
       </footer>
     </div>
@@ -19,12 +25,23 @@
 
 <script>
   export default {
-    name: 'modal',
-
+    name: 'messagingModal',
+    props: ['username', 'messages'],
+    data() {
+        return {
+            message: '',
+        }
+    },
     methods: {
       close() {
         this.$emit('close');
       },
+      getMessages(){
+          this.$emit('getMessages')
+      },
+      submitMessage(event){
+          this.$emit('submitMessage', this.message)
+      }
     },
   };
 </script>
@@ -48,13 +65,13 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    height: 300px;
-    width: 300px;
+    height: 600px;
+    width: 1000px;
 }
 
 .modal-header,
 .modal-footer {
-    padding: 15%;
+    padding: 20px;
     display: flex;
 }
 
@@ -66,7 +83,7 @@
 
 .modal-body {
     position: relative;
-    padding: 20%;
+    padding: 20px;
 }
 
 </style>
