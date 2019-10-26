@@ -32,8 +32,15 @@ def add_message():
 @messages_api.route('/get_all_messages', methods=['POST'])
 def get_all_messages():
     current_user_id = request.json["current_user_id"]
-    sent_messages = Messages.query.filter_by(first_user_id=current_user_id).all()
-    recieved_messages = Messages.query.filter_by(second_user_id=current_user_id).all()
-    total_messages_objects = sent_messages + recieved_messages
-    total_messages = [message.message for message in total_messages_objects]
-    return jsonify(messages=total_messages)
+    second_user_name = request.json['second_user_name']
+    second_user_id = Users.query.filter_by(username=second_user_name).first().id
+    current_user_sent_messages = Messages.query.filter(Messages.first_user_id == current_user_id, Messages.second_user_id == second_user_id).all()
+    current_user_recieved_messages = Messages.query.filter(Messages.first_user_id == second_user_id, Messages.second_user_id == current_user_id).all()
+    # .filter(User.username=='Bob', Space.name=='Mainspace').first()
+    # sent_messages = Messages.query.filter_by(first_user_id=current_user_id).all()
+    # recieved_messages = Messages.query.filter_by(second_user_id=second_user_id).all()
+    sent_messages = [message.message for message in current_user_sent_messages]
+    recieved_messages = [message.message for message in current_user_recieved_messages]
+    # total_messages_objects = current_user_sent_messages + current_user_recieved_messages
+    # total_messages = [message.message for message in total_messages_objects]
+    return jsonify(recieved=recieved_messages, sent=sent_messages)

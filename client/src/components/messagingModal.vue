@@ -1,21 +1,27 @@
 <template>
   <div class="modal-backdrop">
     <div class="modal">
+      <header class="modal-header">
+        <button class='x-out-button' @click="close"> X </button>
+      </header>
       <section class="modal-body">
         <slot name="body">
-          Messages from
-          {{ username }}<br><br>
+          <div class='messages-box'>
+            <ul v-for='messageValue in sentmessages' :key='messageValue' class='sentmessages'>
+                <li>{{ messageValue }}</li>
+            </ul>
+            <ul v-for='messageValue in recievedmessages' :key='messageValue' class='recievedmessages'>
+                <li>{{ messageValue }}</li>
+            </ul>
+            <br><br>
+          </div>
+          Send a message to {{ username }}<br><br>
           <textarea v-model='message' rows="4" cols="50" >Input your message here</textarea><br>
-          <button @click="submitMessage" type="submit" >Send</button>
-          <button @click="getMessages"> Get Messages</button><br>
-          <ul v-for='messageValue in messages' :key='messageValue'>
-            <li>{{ messageValue }}</li>
-          </ul><br>
+          <button @click="submitMessage" type="submit" >Send</button><br><br>
         </slot>
       </section>
       <footer class="modal-footer">
           <slot name="footer">
-            <button @click="close"> Close</button>
         </slot>
       </footer>
     </div>
@@ -26,7 +32,7 @@
 <script>
   export default {
     name: 'messagingModal',
-    props: ['username', 'messages'],
+    props: ['username', 'sentmessages','recievedmessages'],
     data() {
         return {
             message: '',
@@ -43,6 +49,11 @@
           this.$emit('submitMessage', this.message)
       }
     },
+    mounted() {
+        getMessages: {
+          this.$emit('getMessages')
+      }
+    }
   };
 </script>
 
@@ -69,7 +80,16 @@
     width: 1000px;
 }
 
-.modal-header,
+.modal-header {
+    padding: 20px 20px 0 20px;
+    display: flex;
+}
+
+.x-out-button {
+    margin-left: auto;
+    order: 2;
+}
+
 .modal-footer {
     padding: 20px;
     display: flex;
@@ -85,5 +105,38 @@
     position: relative;
     padding: 20px;
 }
+
+.messages-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-box ul {
+    padding: 0;
+    margin: 2px;
+}
+
+.sentmessages {
+    display: flex;
+}
+
+.sentmessages li{
+    margin-left: auto;
+    order: 2;
+    background: blue;
+    color: white;
+}
+
+.recievedmessages {
+    display: flex;
+}
+
+.recievedmessages li{
+    margin-right: auto;
+    order: 2;
+    background: rgb(179, 179, 179);
+    color: black;
+}
+
 
 </style>
