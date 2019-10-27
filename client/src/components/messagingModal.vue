@@ -128,6 +128,8 @@ import { isAuthenticated } from '../helpers.js'
     order: 2;
     background: blue;
     color: white;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .recievedmessages {
@@ -139,6 +141,8 @@ import { isAuthenticated } from '../helpers.js'
     order: 2;
     background: rgb(179, 179, 179);
     color: black;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 

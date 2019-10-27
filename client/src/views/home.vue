@@ -71,7 +71,8 @@ export default {
       .then(response => {
         console.log(response)
         axios.post('/random-image',{
-          user_id: this.userSessionID
+          user_id: this.userSessionID,
+          current_image: this.randomImage,
         })
           .then(response => {
         console.log(response.data.image_link);
@@ -93,7 +94,8 @@ export default {
       .then(response => {
         console.log(response)
         axios.post('/random-image',{
-          user_id: this.userSessionID
+          user_id: this.userSessionID,
+          current_image: this.randomImage,
         })
           .then(response => {
             console.log(response.data.image_link);
@@ -103,7 +105,8 @@ export default {
       .catch(error => {
         console.log(error)
         axios.post('/random-image',{
-          user_id: this.userSessionID
+          user_id: this.userSessionID,
+          current_image: this.randomImage,
         })
         .then(response => {
             console.log(response.data.image_link);
@@ -137,7 +140,8 @@ export default {
       } else {
         this.userSessionID = data['user']
         axios.post('/random-image',{
-          user_id: this.userSessionID
+          user_id: this.userSessionID,
+          current_image: this.randomImage,
         })
         .then(response => {
         console.log(response.data.image_link);

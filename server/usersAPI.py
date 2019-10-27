@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, session, redirect, escape
+from flask import Blueprint, jsonify, request, session
 from sql_alchemy_db_instance import db
 from models import Users, Images, LikedImages
 from hashutils import make_pw_hash, check_pw_hash

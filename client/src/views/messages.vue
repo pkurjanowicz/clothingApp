@@ -53,6 +53,7 @@ export default {
             this.isModalVisible = true;
             this.currentViewingMessages = user;
             this.secondUserName = user;
+            // this.$router.push({ query: { user: user }}) Will use this to link to the my liked images page
         },
         submitMessage(value) {
             this.message = value; /*gettings value from child*/

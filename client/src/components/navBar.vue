@@ -35,7 +35,6 @@ export default {
 .navbar {
     display: flex;
     flex-direction: row;
-    margin: 0 0 6% 0;
 }
 
 .navbar-btn {
