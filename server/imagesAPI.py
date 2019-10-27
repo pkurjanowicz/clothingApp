@@ -71,9 +71,10 @@ def find_match():
         if not image_owner_id:
                 return jsonify(match=False)
         image_owner_id = image_owner_id.owner_id
+        image_owner_name = Users.query.filter_by(id=image_owner_id).first().username
         owner_liked_liker_image = LikedImages.query.filter_by(owner_id=liker_id, user_id=image_owner_id).first().owner_id
         if owner_liked_liker_image != '':
-                return jsonify(match=True, liked_image=owner_liked_liker_image)
+                return jsonify(match=True, liked_image=owner_liked_liker_image, second_user_name=image_owner_name)
         return jsonify(match=False)
         
 

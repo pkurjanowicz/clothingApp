@@ -11,8 +11,7 @@
           @close="closeModal()"
           @getMessages='getAllMessages()' 
           :username='currentViewingMessages'
-          :sentmessages='sentMessages' 
-          :recievedmessages='recievedMessages'
+          :messages='messages'
           @submitMessage='submitMessage'
           />
         </div>
@@ -31,8 +30,7 @@ export default {
     },
     data() {
         return {
-        sentMessages: '',
-        recievedMessages: '',
+        messages: '',
         message: '',
         secondUserName: '',
         userSessionID: '',
@@ -84,7 +82,8 @@ export default {
                 second_user_name: this.secondUserName,
             })
             .then(response => {
-                console.log(response)
+                console.log(response.data.messages)
+                this.messages = response.data.messages
                 this.sentMessages = response.data.sent
                 this.recievedMessages = response.data.recieved
             })

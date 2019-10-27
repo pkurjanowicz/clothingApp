@@ -7,11 +7,10 @@
       <section class="modal-body">
         <slot name="body">
           <div class='messages-box'>
-            <ul v-for='messageValue in sentmessages' :key='messageValue' class='sentmessages'>
-                <li>{{ messageValue }}</li>
-            </ul>
-            <ul v-for='messageValue in recievedmessages' :key='messageValue' class='recievedmessages'>
-                <li>{{ messageValue }}</li>
+            <ul v-for='messageValue in messages' 
+            :key='messageValue' 
+            :class="{'sentmessages': (messageValue[2] === 'sent'), 'recievedmessages': (messageValue[2] === 'recieved')}" >
+                <li >{{ messageValue[1] }}</li>
             </ul>
             <br><br>
           </div>
@@ -30,9 +29,12 @@
 
 
 <script>
+import axios from 'axios';
+import { isAuthenticated } from '../helpers.js'
+
   export default {
     name: 'messagingModal',
-    props: ['username', 'sentmessages','recievedmessages'],
+    props: ['username','messages'],
     data() {
         return {
             message: '',
@@ -47,14 +49,15 @@
       },
       submitMessage(event){
           this.$emit('submitMessage', this.message)
-      }
+          this.message = ''
+      },
     },
     mounted() {
         getMessages: {
           this.$emit('getMessages')
       }
     }
-  };
+}
 </script>
 
 <style scoped>

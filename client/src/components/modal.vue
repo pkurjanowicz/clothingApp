@@ -1,17 +1,17 @@
 <template>
   <div class="modal-backdrop">
     <div class="modal">
+      <header class="modal-header">
+        You've Got a Match!<br>
+        <button class='x-out-button' @click="close"> X </button>
+      </header>
       <section class="modal-body">
         <slot name="body">
-          You've Got a Match!
+          Send a message to {{ username }}<br><br>
+          <textarea v-model='message' rows="3" cols="35" >Input your message here</textarea><br>
+          <button @click="submitMessage" type="submit" >Send</button><br><br>
         </slot>
       </section>
-      <footer class="modal-footer">
-          <slot name="footer">
-            <button type="button" @click="close">Close
-          </button>
-        </slot>
-      </footer>
     </div>
   </div>
 </template>
@@ -20,10 +20,19 @@
 <script>
   export default {
     name: 'modal',
-
+    props: ['username'],
+    data() {
+        return {
+            message: '',
+        }
+    },
     methods: {
       close() {
         this.$emit('close');
+      },
+      submitMessage(event){
+          this.$emit('submitMessage', this.message)
+          this.message = ''
       },
     },
   };
@@ -52,21 +61,19 @@
     width: 300px;
 }
 
-.modal-header,
-.modal-footer {
-    padding: 15%;
+.modal-header {
+    padding: 20px 20px 0 20px;
     display: flex;
 }
 
-
-.modal-footer {
-    justify-content: center;
-    align-items: center;
+.x-out-button {
+    margin-left: auto;
+    order: 2;
 }
 
 .modal-body {
     position: relative;
-    padding: 20%;
+    padding: 15% 5% 0 5%;
 }
 
 </style>

@@ -7,4 +7,5 @@ const isAuthenticated = () => axios.get('checksession')
     .catch(function (error) {
     });
 
+
 export { isAuthenticated }

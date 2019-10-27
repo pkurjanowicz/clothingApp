@@ -1,7 +1,5 @@
 <template>
     <div class="home">
-      <!-- <h1>{{ title }}</h1>
-        <p>user session ID is: {{userSessionID}}</p> -->
         <img :src="randomImage">
         <br>
         <div class="like-dislike-btns">
@@ -9,7 +7,11 @@
           <button @click="dislikeImage()">Dislike</button>
         </div>
         <div>
-          <modal v-if="isModalVisible" @close="closeModal()"/>
+          <modal v-if="isModalVisible" 
+          @close="closeModal()"
+          @submitMessage='submitMessage'
+          :username='secondUserName'
+          />
         </div>
     </div>
 </template>
@@ -34,6 +36,8 @@ export default {
       successfulUpload: '',
       matchSuccess: '',
       isModalVisible: false,
+      message: '',
+      secondUserName: '',
     }
   },
   methods: {
@@ -47,7 +51,7 @@ export default {
         })
         .then(response => {
           this.matchSuccess = response.data['liked_image']
-          console.log(this.matchSuccess)
+          this.secondUserName = response.data.second_user_name
             if (this.matchSuccess != '') {
             this.isModalVisible = true;
           }
@@ -106,7 +110,23 @@ export default {
             this.randomImage = response.data.image_link
           })
       })
-    }
+    },
+    submitMessage(value) {
+            this.message = value; /*gettings value from child*/
+            axios.post('/add_message', {
+                first_user_id: this.userSessionID,
+                second_user_name: this.secondUserName,
+                message: this.message,
+            })
+            .then(response => {
+                console.log(response)
+                this.message = ''
+                this.closeModal()
+            })
+            .catch(error => {
+            console.log(error)
+        })
+    },
   },
   /* these functions run when page is loaded, check user 
   session and get random image from image table in the db */
