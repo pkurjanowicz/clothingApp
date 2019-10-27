@@ -1,10 +1,15 @@
 <template>
     <div class="myMessages">
         <div class="messagableUsers">
+            <div v-if='userNamesCurrentUserCanMessage != 0'>
             <h1>Pick a User</h1>
                 <ul v-for="user in userNamesCurrentUserCanMessage" :key="user">
                     <button @click='makeMessagingModalVisibile(user)' >{{ user }}</button>
                 </ul>
+            </div>
+            <div v-else>
+                <p>You cannot message any users yet</p>
+            </div>
         </div>
         <div>
           <messagingModal v-if="isModalVisible" 

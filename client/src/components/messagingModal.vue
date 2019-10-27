@@ -79,8 +79,8 @@ import { isAuthenticated } from '../helpers.js'
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    height: 600px;
-    width: 1000px;
+    height: 500px;
+    width: 800px;
 }
 
 .modal-header {

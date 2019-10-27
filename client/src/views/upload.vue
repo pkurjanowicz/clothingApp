@@ -48,6 +48,7 @@ export default {
             .then(response => {
               console.log(response);
               this.successfulUpload = 'Success!'
+              this.file = ''
             })
             .catch(error => {
               console.log(error);
@@ -60,7 +61,8 @@ export default {
     },
     //this is bound to file input section in html
     handleFileUpload(){
-        this.file = this.$refs.file.files[0];
+        this.file = this.$refs.file.files[0]
+        this.successfulUpload = ''
     },
   },
   /* these functions run when page is loaded, check user 

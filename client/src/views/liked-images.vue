@@ -1,8 +1,5 @@
 <template>
     <div class="likedImages">
-        <!-- <h1>{{ title }}</h1>
-        <p>Session user ID is: {{userSessionID}}</p> -->
-        <button @click="getLikedImages()">Get Liked Images</button>
         <p v-if="message">{{ message }}</p>
         <div class="images-box">
             <li v-for="image in likedImages" :key='image'>
@@ -51,6 +48,7 @@ export default {
             this.$router.push('/login')
             } else {
             this.userSessionID = data['user']
+            this.getLikedImages()
         }
         })
     },

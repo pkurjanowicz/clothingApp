@@ -5,6 +5,7 @@ from models import Users, Images, LikedImages, Messages
 
 messages_api = Blueprint('messages_api', __name__)
 
+#endpoint finds all image owner names that the current logged in user liked
 @messages_api.route('/return_messagable_users', methods=['POST'])
 def return_messagable_users():
     current_user_id = request.json["current_user_id"]
@@ -16,7 +17,8 @@ def return_messagable_users():
     for user_id in list_of_image_owner_ids:
         user_name = Users.query.filter_by(id=user_id).first()
         image_owner_names.append(user_name.username)
-    return jsonify(user_list=image_owner_names)
+        return jsonify(user_list=image_owner_names)
+
 
 @messages_api.route('/add_message', methods=['POST'])
 def add_message():

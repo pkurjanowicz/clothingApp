@@ -50,9 +50,9 @@ export default {
           image_link: this.randomImage,
         })
         .then(response => {
-          this.matchSuccess = response.data['liked_image']
+          this.matchSuccess = response.data['match']
           this.secondUserName = response.data.second_user_name
-            if (this.matchSuccess != '') {
+            if (this.matchSuccess == true) {
             this.isModalVisible = true;
           }
         })

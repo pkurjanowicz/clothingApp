@@ -76,7 +76,6 @@ def find_match():
         if owner_liked_liker_image != '':
                 return jsonify(match=True, liked_image=owner_liked_liker_image, second_user_name=image_owner_name)
         return jsonify(match=False)
-        
 
 @images_api.route('/my-liked-images', methods=['POST'])
 def get_all_liked_images():

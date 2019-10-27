@@ -1,6 +1,5 @@
 <template>
     <div class="myImages">
-        <button @click="getAddedImages()">Get My Images</button>
         <p v-if="message">{{ message }}</p>
         <div class="images-box">
             <li v-for="image in addedImages" :key='image'>
@@ -50,6 +49,7 @@ export default {
             this.$router.push('/login')
             } else {
             this.userSessionID = data['user']
+            this.getAddedImages()
         }
         })
     }
