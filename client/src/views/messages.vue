@@ -53,6 +53,7 @@ export default {
             this.isModalVisible = true;
             this.currentViewingMessages = user;
             this.secondUserName = user;
+            this.getAllMessages()
             // this.$router.push({ query: { user: user }}) Will use this to link to the my liked images page
         },
         submitMessage(value) {
@@ -102,7 +103,6 @@ export default {
       } else {
         this.userSessionID = data['user']
         this.getAllowedMessageIds()
-        this.getAllMessages()
       }
     });
   }

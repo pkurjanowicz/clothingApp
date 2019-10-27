@@ -51,6 +51,8 @@ export default {
         })
         .then(response => {
           this.matchSuccess = response.data['match']
+          console.log(response)
+          console.log(response.data['match'])
           this.secondUserName = response.data.second_user_name
             if (this.matchSuccess == true) {
             this.isModalVisible = true;

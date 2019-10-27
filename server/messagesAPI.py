@@ -10,16 +10,25 @@ messages_api = Blueprint('messages_api', __name__)
 #endpoint finds all image owner names that the current logged in user liked
 @messages_api.route('/return_messagable_users', methods=['POST'])
 def return_messagable_users():
-    current_user_id = request.json["current_user_id"]
-    total_user_ids = LikedImages.query.filter_by(user_id=current_user_id).all() #pulls out objects that only current user liked
-    total_image_owner_ids = [value.owner_id for value in total_user_ids] #iterates over object list and pulls out the owner IDs of those items
-    deduped_total_user_ids = set(total_image_owner_ids)
-    list_of_image_owner_ids = list(deduped_total_user_ids)
-    image_owner_names = []
-    for user_id in list_of_image_owner_ids:
-        user_name = Users.query.filter_by(id=user_id).first() 
-        image_owner_names.append(user_name.username) 
+        current_user_id = request.json["current_user_id"]
+        total_user_ids = LikedImages.query.filter_by(user_id=current_user_id).all() #pulls out objects that only current user liked
+        total_image_owner_ids = [value.owner_id for value in total_user_ids] #iterates over object list and pulls out the owner IDs of those items
+        deduped_total_user_ids = set(total_image_owner_ids)
+        list_of_image_owner_ids = list(deduped_total_user_ids)
+        image_owner_names = []
+        #this for and try just simply sees if there is a match and only allows user to message
+        #if there is a match between users
+        for user_id in list_of_image_owner_ids:
+                try:
+                        owner_liked_liker_image = LikedImages.query.filter_by(owner_id=current_user_id, user_id=user_id).first().owner_id
+                        if owner_liked_liker_image != '':
+                                user_name = Users.query.filter_by(id=user_id).first() 
+                                image_owner_names.append(user_name.username) 
+                except AttributeError:
+                        print('this is Attribute Error')
         return jsonify(user_list=image_owner_names)
+
+
 
 
 @messages_api.route('/add_message', methods=['POST'])
