@@ -1,6 +1,9 @@
 <template>
     <div class="myMessages">
         <div class="messagableUsers">
+            <div v-if='cannotMessageUser' class="warning-message">
+                {{cannotMessageUser}}
+            </div>
             <div v-if='userNamesCurrentUserCanMessage != 0'>
             <h1>Pick a User</h1>
                 <ul v-for="user in userNamesCurrentUserCanMessage" :key="user">
@@ -42,6 +45,7 @@ export default {
         userNamesCurrentUserCanMessage: 0,
         isModalVisible: false,
         currentViewingMessages: '',
+        cannotMessageUser: '',
         }
     },
     methods: {
@@ -79,6 +83,7 @@ export default {
             })
             .then(response => {
                 this.userNamesCurrentUserCanMessage = response.data.user_list
+                this.routeChange()
             })
             .catch(error => {
             console.log(error)
@@ -99,7 +104,11 @@ export default {
         routeChange() {
             if (this.$route.query.user) {
                 this.secondUserName = this.$route.query.user
-                this.makeMessagingModalVisibile(this.secondUserName)
+                if (this.userNamesCurrentUserCanMessage.includes(this.secondUserName)) {
+                    this.makeMessagingModalVisibile(this.secondUserName)
+                } else {
+                    this.cannotMessageUser = `You are not allowed to message ${this.secondUserName} yet, please match first`
+                }
             }
         }
     },
@@ -110,12 +119,16 @@ export default {
       } else {
         this.userSessionID = data['user']
         this.getAllowedMessageIds()
-        this.routeChange()
       }
     });
   }
 }
 </script>
 <style scoped>
+
+.warning-message {
+    padding: 10px;
+    background: rgba(255, 255, 0, 0.577);
+}
 
 </style>

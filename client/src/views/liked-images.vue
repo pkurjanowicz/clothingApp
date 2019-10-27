@@ -3,7 +3,7 @@
         <p v-if="message">{{ message }}</p>
         <div class="images-box">
             <li v-for="image in likedImages" :key='image'>
-                <a :href="'/messages?user='+ image[1]">
+                <a :href="'/messages?user='+image[1]">
                     <div class="image-link-box">
                         <img :src="image[0]">
                         <span class='text-wrapper'>{{image[1]}}</span>
