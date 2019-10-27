@@ -1,6 +1,6 @@
 # Clothing App
 The main function of this app is to allow users to upload images and then display those images to them. 
-Liking images and disliking images will also allow users to find those images later
+Liking images and disliking images will also allow users to find those images later. Messaging is also incorporated into the app to allow users to communicate. 
 
 ## Installation
 Make sure you install all dependancies in the pipfile and package.json file. ```npm install```
