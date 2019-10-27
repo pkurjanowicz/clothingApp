@@ -12,13 +12,13 @@
             </div>
         </div>
         <div>
-          <messagingModal v-if="isModalVisible" 
-          @close="closeModal()"
-          @getMessages='getAllMessages()' 
-          :username='currentViewingMessages'
-          :messages='messages'
-          @submitMessage='submitMessage'
-          />
+            <messagingModal v-if="isModalVisible" 
+            @close="closeModal()"
+            @getMessages='getAllMessages()' 
+            :username='currentViewingMessages'
+            :messages='messages'
+            @submitMessage='submitMessage'
+            />
         </div>
     </div>
 </template>
@@ -48,13 +48,14 @@ export default {
         closeModal() {
             this.isModalVisible = false;
             this.yourMessages = '';
+            this.$router.push('/messages')
             },
         makeMessagingModalVisibile(user) {
             this.isModalVisible = true;
             this.currentViewingMessages = user;
             this.secondUserName = user;
             this.getAllMessages()
-            // this.$router.push({ query: { user: user }}) Will use this to link to the my liked images page
+            this.$router.push({ query: { user: user }}) /*Will use this to link to the my liked images page*/
         },
         submitMessage(value) {
             this.message = value; /*gettings value from child*/
@@ -94,6 +95,12 @@ export default {
                 this.sentMessages = response.data.sent
                 this.recievedMessages = response.data.recieved
             })
+        },
+        routeChange() {
+            if (this.$route.query.user) {
+                this.secondUserName = this.$route.query.user
+                this.makeMessagingModalVisibile(this.secondUserName)
+            }
         }
     },
     mounted() {
@@ -103,6 +110,7 @@ export default {
       } else {
         this.userSessionID = data['user']
         this.getAllowedMessageIds()
+        this.routeChange()
       }
     });
   }
