@@ -82,6 +82,7 @@ export default {
     text-align: center;
     color: #fff;
     opacity: 0;
+    margin: 0 0 10px 0;
 }
 
 .image-link-box:hover .text-wrapper{

@@ -88,8 +88,8 @@ export default {
     align-items: center;
     padding: 20px 12px 4px 12px;
     cursor: pointer;
+    margin: 30px 0 0;
 }
-
 
 .upload {
     display: flex;
