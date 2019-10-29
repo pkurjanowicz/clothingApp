@@ -5,6 +5,7 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(500))
     pw_hash = db.Column(db.String(500))
+    time_zone = db.Column(db.String(120))
     images = db.relationship('Images', backref='users', lazy=True)
     likedimages = db.relationship('LikedImages', backref='users', lazy=True) 
     #flask sqlalchemy magic(line above this).
@@ -38,3 +39,4 @@ class Messages(db.Model):
     message = db.Column(db.String(600),nullable=False)
     first_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     second_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    message_time_utc = db.Column(db.Integer,nullable=False)

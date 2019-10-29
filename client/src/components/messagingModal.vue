@@ -2,15 +2,19 @@
   <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
+        <p>*all timestamps are in UTC(will fix soon)</p>
         <button class='x-out-button' @click="close"> X </button>
       </header>
       <section class="modal-body">
         <slot name="body">
           <div class='messages-box'>
-            <ul v-for='messageValue in messages' 
+            <!-- messages below are imported from the parent element(client/src/views/messages.vue) -->
+            <ul v-for='messageValue in messages'
             :key='messageValue' 
             :class="{'sentmessages': (messageValue[2] === 'sent'), 'recievedmessages': (messageValue[2] === 'recieved')}" >
-                <li >{{ messageValue[1] }}</li>
+                <li >{{ messageValue[1] }}</li><br>
+                <p>{{messageValue[3]}}</p>
+                <!-- messageValue[3] is the timestamp in UTC, need to figure out how to convert this to local time -->
             </ul>
             <br><br>
           </div>
@@ -38,6 +42,7 @@ import { isAuthenticated } from '../helpers.js'
     data() {
         return {
             message: '',
+            localTimeStamp: '',
         }
     },
     methods: {
@@ -48,9 +53,19 @@ import { isAuthenticated } from '../helpers.js'
           this.$emit('getMessages')
       },
       submitMessage(event){
-          this.$emit('submitMessage', this.message)
+        //this.message is passed up to the parent element(client/src/views/messages.vue)
+          this.$emit('submitMessage', this.message) 
           this.message = ''
       },
+      //possibly use this to convert the timestamp to local time? TODO
+      convertToLocalTime(timeZoneValue) {
+        timeZoneValue = timeZoneValue + 'UTC'
+        console.log(timeZoneValue)
+        var date = new Date(timeZoneValue);
+        console.log(date)
+        this.localTimeStamp = date.toString()
+        console.log(this.localTimeStamp)
+      }
     },
     mounted() {
         getMessages: {
@@ -98,7 +113,6 @@ import { isAuthenticated } from '../helpers.js'
     display: flex;
 }
 
-
 .modal-footer {
     justify-content: center;
     align-items: center;
@@ -117,6 +131,8 @@ import { isAuthenticated } from '../helpers.js'
 .messages-box ul {
     padding: 0;
     margin: 2px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sentmessages {
@@ -145,5 +161,26 @@ import { isAuthenticated } from '../helpers.js'
     border-radius: 10px;
 }
 
+.sentmessages p {
+  margin-left: auto;
+  order: 2;
+  font-size: 12px;
+  color: grey;
+}
+
+.recievedmessages p {
+  margin-right: auto;
+  order: 2;
+  font-size: 12px;
+  color: grey;
+}
+
+li {
+  margin: 0px;
+}
+
+p {
+  margin: 1px;
+}
 
 </style>

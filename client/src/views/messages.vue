@@ -46,6 +46,7 @@ export default {
         isModalVisible: false,
         currentViewingMessages: '',
         cannotMessageUser: '',
+        timeZone: '',
         }
     },
     methods: {
@@ -110,6 +111,18 @@ export default {
                     this.cannotMessageUser = `You are not allowed to message ${this.secondUserName} yet, please match first`
                 }
             }
+        },
+        getTimeZone() {
+            axios.post('/getProfileData',{
+                currentuser: this.userSessionID,
+            })
+            .then(response =>{
+                console.log(response)
+                this.timeZone = response.data.user_time
+            })
+            .catch(error => {
+                console.log(error)
+            })
         }
     },
     mounted() {
@@ -119,6 +132,7 @@ export default {
       } else {
         this.userSessionID = data['user']
         this.getAllowedMessageIds()
+        this.getTimeZone()
       }
     });
   }

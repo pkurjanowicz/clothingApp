@@ -78,8 +78,8 @@ export default {
         })
           .then(response => {
         console.log(response.data.image_link);
-        this.randomImage = response.data.image_link
         this.findMatch()
+        this.randomImage = response.data.image_link
           })
       })
       .catch(error => {
@@ -117,7 +117,7 @@ export default {
       })
     },
     submitMessage(value) {
-            this.message = value; /*gettings value from child*/
+            this.message = value; /*getting value from child*/
             axios.post('/add_message', {
                 first_user_id: this.userSessionID,
                 second_user_name: this.secondUserName,

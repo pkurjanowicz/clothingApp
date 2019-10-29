@@ -49,6 +49,12 @@ const routerOptions = [
       title: 'Your Messages' 
     },
   },
+  { path: '/profile', 
+    component: 'profile', 
+    props: {
+      title: 'Your Profile' 
+    },
+  },
 ]
 /* this variable actually maps the 
 route to the component in the views folder*/

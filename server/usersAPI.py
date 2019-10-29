@@ -49,4 +49,17 @@ def check_session():
         else:
                 return jsonify(session = False)
 
+@users_api.route('/submitProfileData', methods=['POST'])
+def submit_profile_data():
+        timezone = request.json["timezone"]
+        current_user = request.json["currentuser"]
+        user = Users.query.filter_by(id=current_user).first()
+        user.time_zone = timezone
+        db.session.commit()
+        return jsonify(success=True, user_time=timezone)
 
+@users_api.route('/getProfileData', methods=['POST'])
+def get_profile_data():
+        current_user = request.json["currentuser"]
+        user = Users.query.filter_by(id=current_user).first()
+        return jsonify(success=True, user_time=user.time_zone)

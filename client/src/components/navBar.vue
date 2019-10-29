@@ -5,6 +5,7 @@
         <router-link to="/my-images"><button class='navbar-btn'>My Images</button></router-link>
         <router-link to="/liked-images"><button class='navbar-btn'>My Liked Images</button></router-link>
         <router-link to="/messages"><button class='navbar-btn'>My Messages</button></router-link>
+        <router-link to="/profile"><button class='navbar-logout' >My Profile</button></router-link>
         <a href='' class="logout-slide-right"><button @click="logOut" class='navbar-logout'>Logout</button></a>
     </div>
 </template>
