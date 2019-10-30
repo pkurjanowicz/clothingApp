@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from sql_alchemy_db_instance import db
 from models import Users, Images, LikedImages, Messages
 from datetime import datetime
+from pytz import timezone
+from helpers import calculate_current_time_zone
 
 #second user ID === the person recieving the message
 #first user ID === the person sending the message
@@ -36,7 +38,7 @@ def add_message():
     second_user_name = request.json["second_user_name"]
     message = request.json["message"]
     second_user_id = Users.query.filter_by(username=second_user_name).first().id 
-    time_now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    time_now = datetime.now(timezone('UTC')).strftime("%Y-%m-%d %H:%M:%S") #adds message in GMT(UTC)
     new_message = Messages(first_user_id=first_user_id,second_user_id=second_user_id, message=message, message_time_utc=time_now)
     db.session.add(new_message)
     db.session.commit()
@@ -52,8 +54,10 @@ def get_all_messages():
     current_user_recieved_messages = Messages.query.filter(Messages.first_user_id == second_user_id, Messages.second_user_id == current_user_id).all()
     #i am adding 'sent' and 'recieved' here for use later on line 12 in the messagingModal.vue file
     #these values are used with class bindings in order to render sent messages in blue and recieved in grey
-    sent_messages = [(message.id, message.message,'sent', message.message_time_utc) for message in current_user_sent_messages]
-    recieved_messages = [(message.id, message.message,'recieved', message.message_time_utc) for message in current_user_recieved_messages]
+    #the calculate_current_time_zone function is from the helpers.py it just simply takes the timezone and transposes it to whatever
+    #the user has stored in the Users database as their timezone
+    sent_messages = [(message.id, message.message,'sent', str(calculate_current_time_zone(message.message_time_utc,current_user_id))[:-6]) for message in current_user_sent_messages]
+    recieved_messages = [(message.id, message.message,'recieved', str(calculate_current_time_zone(message.message_time_utc,current_user_id))[:-6]) for message in current_user_recieved_messages]
     full_array_of_message_objects = sent_messages + recieved_messages
     #I am sorting the array by the message ID because I want to make sure they are in order from
     #oldest to newest so when they render in the modal it makes sense to the user

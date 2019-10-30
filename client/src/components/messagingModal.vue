@@ -2,7 +2,6 @@
   <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
-        <p>*all timestamps are in UTC(will fix soon)</p>
         <button class='x-out-button' @click="close"> X </button>
       </header>
       <section class="modal-body">
@@ -13,7 +12,7 @@
             :key='messageValue' 
             :class="{'sentmessages': (messageValue[2] === 'sent'), 'recievedmessages': (messageValue[2] === 'recieved')}" >
                 <li >{{ messageValue[1] }}</li><br>
-                <p>{{messageValue[3]}}</p>
+                <p>{{ messageValue[3] }}</p>
                 <!-- messageValue[3] is the timestamp in UTC, need to figure out how to convert this to local time -->
             </ul>
             <br><br>
