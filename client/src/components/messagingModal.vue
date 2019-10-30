@@ -19,8 +19,8 @@
             <br><br>
           </div>
           Send a message to {{ username }}<br><br>
-          <textarea v-model='message' rows="4" cols="50" >Input your message here</textarea><br>
-          <button @click="submitMessage" type="submit" >Send</button><br><br>
+          <textarea v-model='message' rows="4" cols="50" @keyup.enter.exact='submitMessage'>Input your message here</textarea><br>
+          <button @click="submitMessage" v-on:keyup.enter='submitMessage' type="submit" >Send</button><br><br>
         </slot>
       </section>
       <footer class="modal-footer">
