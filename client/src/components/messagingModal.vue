@@ -1,6 +1,7 @@
 <template>
-  <div class="modal-backdrop">
-    <div class="modal">
+<transition name="fade">
+  <div class="modal-backdrop" @click='close()'>
+    <div class="modal" @click.stop>
       <header class="modal-header">
         <button class='x-out-button' @click="close"> X </button>
       </header>
@@ -28,6 +29,7 @@
       </footer>
     </div>
   </div>
+</transition>
 </template>
 
 
@@ -181,5 +183,13 @@ li {
 p {
   margin: 1px;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 
 </style>

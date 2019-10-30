@@ -1,6 +1,7 @@
 <template>
-  <div class="modal-backdrop">
-    <div class="modal">
+<transition name="fade">
+  <div class="modal-backdrop" @click='close()'>
+    <div class="modal" @click.stop>
       <header class="modal-header">
         Setup Your Profile<br>
         <button class='x-out-button' @click="close"> X </button>
@@ -19,6 +20,7 @@
       </section>
     </div>
   </div>
+</transition>
 </template>
 
 
@@ -79,6 +81,13 @@
 .modal-body {
     position: relative;
     padding: 5% 5% 0 5%;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>
