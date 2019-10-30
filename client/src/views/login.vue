@@ -2,9 +2,9 @@
   <div class="login-box">
     <div class="login-form">
         <h1>{{ title }}</h1>
-        <input type="text" v-model="username" placeholder="Username"/>
-        <input type="password" v-model="password" placeholder="Password"/>
-        <button @click="checkUser">Login</button>
+        <input @keyup.enter.exact='checkUser' type="text" v-model="username" placeholder="Username"/>
+        <input @keyup.enter.exact='checkUser' type="password" v-model="password" placeholder="Password"/>
+        <button @click="checkUser" >Login</button>
         <div><router-link to="/register">Register</router-link></div>
     </div>
   </div>

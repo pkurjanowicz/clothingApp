@@ -2,8 +2,8 @@
 <div class=register-box>
   <div class="register-form">
     <h1>{{ title }}</h1>
-    <input type="text" v-model="username" placeholder="Username"/>
-    <input type="password" v-model="password" placeholder="Password"/>
+    <input @keyup.enter.exact='addUser' type="text" v-model="username" placeholder="Username"/>
+    <input @keyup.enter.exact='addUser' type="password" v-model="password" placeholder="Password"/>
     <button @click="addUser">Register</button>
     <div><router-link to="/login">Already have an account?</router-link></div>
   </div>

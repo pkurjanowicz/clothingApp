@@ -9,7 +9,7 @@
       <section class="modal-body">
         <slot name="body">
           Send a message to {{ username }}<br><br>
-          <textarea v-model='message' rows="3" cols="35" >Input your message here</textarea><br>
+          <textarea v-model='message' @keyup.enter.exact='submitMessage' rows="3" cols="35" >Input your message here</textarea><br>
           <button @click="submitMessage" type="submit" >Send</button><br><br>
         </slot>
       </section>
