@@ -1,6 +1,5 @@
 client/node_modules
 *db
 server/dist
-server/hashutils.py
 server/secrets.py
 server/.env

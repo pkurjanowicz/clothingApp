@@ -10,8 +10,13 @@ Liking images and disliking images will also allow users to find those images la
 
 ## Installation
 1. Fork the git repo
-2. In the root directory run the command ```npm install```. This installs all the dependencies
-3. 
+2. Then create a new folder and clone the project into the folder. 
+3. Open up the code in a code editor and navigate to the hashutils.py file inside the server folder. On line 12 please replace ```INSERT_RANDOM_INT_HERE``` with a random int. 
+4. cd into the server folder and run this command:
+    * ```pipenv install```
+
+5. cd into the client folder and run this command:
+    * ```npm install```
 
 ## Usage
 To get the app running you need to use ```npm run build command``` and ```python main.py``` command in separate terminals in order get front end and back end running. 

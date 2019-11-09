@@ -1,5 +1,5 @@
 from sql_alchemy_db_instance import db
-from hashutils import make_pw_hash, make_salt, check_pw_hash
+from hashutils import make_pw_hash, check_pw_hash
 from sqlalchemy import UniqueConstraint
 
 class Users(db.Model):
