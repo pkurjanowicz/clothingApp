@@ -64,19 +64,21 @@ export default {
         },
         submitMessage(value) {
             this.message = value; /*gettings value from child*/
-            axios.post('/add_message', {
+            if (this.message !== "") {
+                axios.post('/add_message', {
                 first_user_id: this.userSessionID,
                 second_user_name: this.secondUserName,
                 message: this.message,
-            })
-            .then(response => {
-                console.log(response)
-                this.message = ''
-                this.getAllMessages()
-            })
-            .catch(error => {
-            console.log(error)
-        })
+                })
+                .then(response => {
+                    console.log(response)
+                    this.message = ''
+                    this.getAllMessages()
+                })
+                .catch(error => {
+                console.log(error)
+                })
+            }
         },
         getAllowedMessageIds() {
             axios.post('/return_messagable_users',{

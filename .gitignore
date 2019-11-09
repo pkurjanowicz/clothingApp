@@ -3,3 +3,4 @@ client/node_modules
 server/dist
 server/hashutils.py
 server/secrets.py
+server/.env

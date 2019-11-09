@@ -9,6 +9,11 @@ verify_ssl = true
 flask = "*"
 flask-sqlalchemy = "*"
 hashutils = "*"
+psycopg2-binary = "*"
+pytz = "*"
+python-dateutil = "*"
+sqlalchemy = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

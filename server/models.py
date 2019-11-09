@@ -1,5 +1,6 @@
 from sql_alchemy_db_instance import db
 from hashutils import make_pw_hash, make_salt, check_pw_hash
+from sqlalchemy import UniqueConstraint
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,7 +21,7 @@ class Users(db.Model):
 
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    link = db.Column(db.String(120), nullable=False)
+    link = db.Column(db.String(120), nullable=False, unique=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
     likedimages = db.relationship('LikedImages', backref='images', lazy=True)
@@ -39,4 +40,4 @@ class Messages(db.Model):
     message = db.Column(db.String(600),nullable=False)
     first_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     second_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    message_time_utc = db.Column(db.Integer,nullable=False)
+    message_time_utc = db.Column(db.String(200),nullable=False)
