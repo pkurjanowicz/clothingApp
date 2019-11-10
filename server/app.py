@@ -4,8 +4,9 @@ from sql_alchemy_db_instance import db
 from usersAPI import users_api
 from imagesAPI import images_api
 from messagesAPI import messages_api
-from secrets import secret_key
 
+
+secret_key1 = ''
 # creats the correct path for the db file
 project_dir = os.path.dirname(os.path.abspath(__file__))
 project_paths = project_dir.split("/")
@@ -30,7 +31,11 @@ def create_app():
     app.register_blueprint(users_api)
     app.register_blueprint(images_api)
     app.register_blueprint(messages_api)
-    app.secret_key = secret_key
+    try:
+        from secrets import secret_key
+        app.secret_key = secret_key
+    except ImportError:
+        app.secret_key = secret_key1
     return app
 
 # this actually keeps db refreshed if new tables are added
