@@ -58,7 +58,6 @@ Liking images and disliking images will also allow users to find those images la
 
 
 ## Caveats and Good-To-Knows
-* Running on the RDS database actually produces a bug with the modal pop up on the homepage. To see the full functionality please run on a local db.(this is a bug)
 * Register on the RDS database actually doesn't redirect the users to the home page after they register. This is likely due to how slow it is for the session to be set.(this is a bug)
 ## Next Steps
 * fix bugs
@@ -69,4 +68,6 @@ Liking images and disliking images will also allow users to find those images la
     * verification on the register page and login page
     * Unread messages icon
     * reformat for mobile
+
+To see the full Kanban board please go here: https://github.com/pkurjanowicz/clothingApp/projects/1
 

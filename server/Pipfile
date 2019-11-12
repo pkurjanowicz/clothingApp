@@ -13,7 +13,6 @@ psycopg2-binary = "*"
 pytz = "*"
 python-dateutil = "*"
 sqlalchemy = "*"
-python-dotenv = "*"
 numpy = "*"
 
 [requires]
