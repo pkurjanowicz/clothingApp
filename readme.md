@@ -10,7 +10,7 @@ Liking images and disliking images will also allow users to find those images la
 * Like or Dislike photos and matching with other users
 
 ## Prerequisites
-* NodeJS
+* NodeJS v10.16.3
 * Python 3.7+
 * Pipenv
 * sqlite3(for local db)
@@ -58,7 +58,15 @@ Liking images and disliking images will also allow users to find those images la
 
 
 ## Caveats and Good-To-Knows
-
+* Running on the RDS database actually produces a bug with the modal pop up on the homepage. To see the full functionality please run on a local db.(this is a bug)
+* Register on the RDS database actually doesn't redirect the users to the home page after they register. This is likely due to how slow it is for the session to be set.(this is a bug)
 ## Next Steps
-
+* fix bugs
+    * User can send a blank message
+    * Image doesn't size down automatically and can affect overall appearance of the pages.
+* Features to add:
+    * Password reset
+    * verification on the register page and login page
+    * Unread messages icon
+    * reformat for mobile
 
