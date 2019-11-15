@@ -1,5 +1,6 @@
 <template>
     <div class="navbar">
+        <!-- router-link is actually linked to the router.js file -->
         <router-link to="/"><button class='navbar-btn'>Home</button></router-link>
         <router-link to="/upload"><button class='navbar-btn'>Upload</button></router-link>
         <router-link to="/my-images"><button class='navbar-btn'>My Images</button></router-link>

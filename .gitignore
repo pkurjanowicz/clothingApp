@@ -1,5 +1,4 @@
 client/node_modules
 *db
-server/dist
 server/secrets.py
 server/.env

@@ -21,12 +21,12 @@ def add_vue_routes(app):
         req.headers["Cache-Control"] = "no-cache"
         return req
     
+app = create_app()
+add_vue_routes(app)
+setup_database(app)
 
 # Creates the app, database and all the routes
 if __name__ == "__main__":
-    app = create_app()
-    add_vue_routes(app)
-    setup_database(app)
     app.run(debug=True)
 
 

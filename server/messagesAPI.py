@@ -5,8 +5,8 @@ from datetime import datetime
 from pytz import timezone
 from helpers import calculate_current_time_zone
 
-#second user ID === the person recieving the message
-#first user ID === the person sending the message
+#second user ID == the person recieving the message
+#first user ID == the person sending the message
 
 messages_api = Blueprint('messages_api', __name__)
 
