@@ -9,7 +9,7 @@ import string
 
 #please replace INSERT_RANDOM_INT_HERE with a random int value to setup salting
 def make_salt1():
-    return ''.join([random.choice(string.ascii_letters)for x in range(INSERT_RANDOM_INT_HERE)])
+    return ''.join([random.choice(string.ascii_letters)for x in range(5)])
 
 def make_pw_hash(password, salt=None):
     if not salt:

@@ -6,7 +6,7 @@ from imagesAPI import images_api
 from messagesAPI import messages_api
 
 
-secret_key1 = ''
+secret_key1 = 'X!Cfzp6GfFYeFg.pgUxanVRi2!'
 # creats the correct path for the db file
 project_dir = os.path.dirname(os.path.abspath(__file__))
 project_paths = project_dir.split("/")
