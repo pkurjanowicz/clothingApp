@@ -38,12 +38,9 @@ export default {
       });
       this.username = '';
       this.password = '';
-      let userSessionName = isAuthenticated().then(data => { 
-        /* I am using this promise to delay the page load 
-        to not allow it to be redirected back to login path */
-        this.$router.push({ path: '/'})
-    })
-  }
+      /* this setTimeout() allows for the session to be set and then will redirect*/
+      setTimeout(() => this.$router.push({ path: '/'}), 300);
+    }
   }
 }
 </script>
