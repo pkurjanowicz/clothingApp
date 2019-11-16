@@ -20,10 +20,6 @@ Liking images and disliking images will also allow users to find those images la
 * Fork the git repo
 * Then create a new folder and clone the project into the folder. 
 ## Adjustments in code
-* Open up the code in a code editor and navigate to the hashutils.py file inside the server folder. On line 12 please replace ```INSERT_RANDOM_INT_HERE``` with a random int. 
-    
-* Open up the app.py folder and go to line 9 and insert a random string into the secret_key1 = value. 
-
 * Sign up for an Imgur API account here: https://apidocs.imgur.com/?version=latest#intro
     * replace the client ID on line 39 in the upload.vue file in the client > views folder with your own client ID. 
 
@@ -41,6 +37,8 @@ Liking images and disliking images will also allow users to find those images la
     DB_URL=
     DB_NAME=
     RUN_ENVIRONMENT=network
+    SECRET_KEY=
+    HASH_VALUE=
 ### Local db 
 * cd into the db folder and create a new sqlite3 database. 
 * In the app.py file located in the server folder please replace `clothingapp.db` with the name of the db you just created. 
