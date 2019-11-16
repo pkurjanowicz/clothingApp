@@ -107,4 +107,4 @@ def get_all_liked_images():
 # Will use this route later to hide the client ID doesn't do anything now
 @images_api.route('/add-to-imgur', methods=['POST'])
 def add_to_imgur():
-        return jsonify(client_id = 'aeebe6e47294974')
+        return jsonify(client_id = os.environ["SECRET_KEY"])

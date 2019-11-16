@@ -2,8 +2,10 @@
 <div class=register-box>
   <div class="register-form">
     <h1>{{ title }}</h1>
+    <p class='error' v-if='error'>Passwords do not match</p>
     <input @keyup.enter.exact='addUser' type="text" v-model="username" placeholder="Username"/>
     <input @keyup.enter.exact='addUser' type="password" v-model="password" placeholder="Password"/>
+    <input @keyup.enter.exact='addUser' type="password" v-model="retypePassword" placeholder="Retype Password"/>
     <button @click="addUser">Register</button>
     <div><router-link to="/login">Already have an account?</router-link></div>
   </div>
@@ -21,13 +23,16 @@ export default {
     return {
       username: '',
       password: '',
+      retypePassword:'',
+      error: '',
     }
   },
   methods: {
     /* add a new user, note there is no 
     client side validation in place yet...*/ 
     addUser() {
-      axios.post('adduser', {
+      if (this.password == this.retypePassword) {
+        axios.post('adduser', {
         username: this.username, 
         password: this.password
         })
@@ -43,7 +48,10 @@ export default {
         /* I am using this promise to delay the page load 
         to not allow it to be redirected back to login path */
         this.$router.push({ path: '/'})
-    })
+      })
+      } else {
+        this.error = 'Passwords do not match'
+      }
     }
   },
 }
@@ -65,7 +73,7 @@ export default {
 
 .register-form h1 {
     text-align: center;
-    margin: 0 0 30%;
+    margin: 0 0 5%;
 }
 
 .register-form div {
@@ -77,5 +85,10 @@ export default {
 }
 .register-form button {
     margin: 10% 0 0 ;
+}
+.error {
+  color:red;
+  background: yellow;
+  font-size: 14px;
 }
 </style>

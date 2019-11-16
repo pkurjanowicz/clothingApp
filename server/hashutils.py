@@ -1,14 +1,15 @@
 import hashlib
 import random
 import string
+import os
 
 
 # These functions just make password, salt it and allow for 
 # me to actually check that salt and hashed pw in the users
 # table in the db. 
 
-def make_salt1():
-    return ''.join([random.choice(string.ascii_letters)for x in range(os.environ["HASH_VALUE"])])
+def make_salt():
+    return ''.join([random.choice(string.ascii_letters)for x in range(int(os.environ["HASH_VALUE"]))])
 
 def make_pw_hash(password, salt=None):
     if not salt:
