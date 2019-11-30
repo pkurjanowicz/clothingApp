@@ -62,4 +62,28 @@ export default {
     flex-wrap: wrap;
     padding: 3% 0 0 0;
 }
+@media only screen and (max-width: 450px) {
+    .images-box li img {
+      max-width: 100%;
+    }
+    .images-box li span {
+     display:none;
+    }
+    .images-box {
+        padding: 20% 0 0 0;
+    }
+  }
+  
+  /* Tablet Styles */
+@media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .images-box li img {
+      max-width: 100%;
+    }
+    .images-box {
+        padding: 14% 0 0 0;
+    }
+    .images-box li span {
+     display:none;
+    }
+  }
 </style>

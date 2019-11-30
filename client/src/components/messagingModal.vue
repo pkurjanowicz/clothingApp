@@ -191,5 +191,18 @@ p {
   opacity: 0;
 }
 
+@media only screen and (max-width: 450px) {
+    .modal {
+        width: 95%;
+    }
+  }
+  
+  /* Tablet Styles */
+@media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .modal {
+        width: 95%;
+    }
+  }
+
 
 </style>

@@ -165,7 +165,7 @@ export default {
     padding: 3% 0 0 0;
 }
 .home img {
-    object-fit: contain;
+    max-width: 700px
 }
 
 .like-dislike-btns {
@@ -177,4 +177,27 @@ export default {
 .like-dislike-btns button {
     margin: 3px;
 }
+/* mobile styles */
+@media only screen and (max-width: 450px) {
+    .home img {
+      max-width: 80%;
+    }
+    .home {
+      padding: 25% 0 0 0
+    }
+  }
+  
+  /* Tablet Styles */
+  @media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .home img {
+    max-width: 75%;
+    }
+    .home {
+      padding: 14% 0 0 0
+    }
+    button {
+      padding: 30px;
+      font-size: 30px;
+    }
+  }
 </style>

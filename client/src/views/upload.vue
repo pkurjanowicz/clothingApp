@@ -97,4 +97,17 @@ export default {
     align-items: flex-start;
     flex-direction: column;
 }
+
+@media only screen and (max-width: 450px) {
+    .upload {
+        padding: 20% 0 0 0;
+    }
+  }
+  
+  /* Tablet Styles */
+@media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .upload {
+        padding: 14% 0 0 0;
+    }
+  }
 </style>

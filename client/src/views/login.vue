@@ -49,7 +49,7 @@ export default {
 .login-box {
     height: 420px;
     width: 300px;
-    margin: 10% 42%;
+    margin: 10% 35%;
     display: flex;
     justify-content: center;
 }
@@ -74,4 +74,41 @@ export default {
 .login-form button {
     margin: 10% 0 0 ;
 }
+/* Mobile Styles */
+@media only screen and (max-width: 450px) {
+    .login-box {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .login-form {
+      box-shadow: none;
+    }
+  }
+  
+  /* Tablet Styles */
+   @media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .login-box {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .login-form {
+      box-shadow: none;
+    }
+    button {
+      padding: 30px;
+      font-size: 30px;
+    }
+    .login-form div a {
+      font-size: 30px;
+    }
+    input[type=text], input[type=password] {
+      font-size: 30px;
+    }
+    .login-form h1 {
+      font-size: 60px;
+    }
+  }
+
 </style>

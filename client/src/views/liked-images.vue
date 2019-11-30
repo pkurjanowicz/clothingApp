@@ -61,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+.likedImages {
+    max-width: 500px;
+}
 .images-box {
     display: flex;
     flex-wrap: wrap;
@@ -84,12 +87,38 @@ export default {
     opacity: 0;
     margin: 0 0 10px 0;
 }
+.images-box li img {
+    max-width: 600px
+}
 
 .image-link-box:hover .text-wrapper{
     transition: all 0.8s ease;
     background: rgba(0, 0, 0, 0.6);
     opacity: 1;
 }
-
+@media only screen and (max-width: 450px) {
+    .images-box li img {
+      max-width: 100%;
+    }
+    .images-box li span {
+     display:none;
+    }
+    .images-box {
+        padding: 20% 0 0 0;
+    }
+  }
+  
+  /* Tablet Styles */
+@media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .images-box li img {
+      max-width: 100%;
+    }
+    .images-box {
+        padding: 14% 0 0 0;
+    }
+    .images-box li span {
+     display:none;
+    }
+  }
 
 </style>

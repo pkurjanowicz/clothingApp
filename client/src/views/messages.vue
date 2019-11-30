@@ -147,4 +147,25 @@ export default {
     background: rgba(255, 255, 0, 0.577);
 }
 
+
+
+@media only screen and (max-width: 450px) {
+    .myMessages {
+        padding: 20% 0 0 0;
+    }
+    .modal {
+        width: 95%;
+    }
+  }
+  
+  /* Tablet Styles */
+@media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .myMessages {
+        padding: 14% 0 0 0;
+    }
+    .modal {
+        width: 95%;
+    }
+  }
+
 </style>

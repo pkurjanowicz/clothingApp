@@ -58,7 +58,7 @@ export default {
 .register-box {
     height: 420px;
     width: 300px;
-    margin: 10% 42%;
+    margin: 10% 35%;
     display: flex;
     justify-content: center;
 }
@@ -88,4 +88,39 @@ export default {
   background: yellow;
   font-size: 14px;
 }
+@media only screen and (max-width: 450px) {
+    .register-box {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .register-form {
+      box-shadow: none;
+    }
+  }
+  
+  /* Tablet Styles */
+  @media only screen and (min-width: 450px) and (max-width: 1025px) {
+    .register-box {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .register-form {
+      box-shadow: none;
+    }
+    button {
+      padding: 30px;
+      font-size: 30px;
+    }
+    .register-form div a {
+      font-size: 30px;
+    }
+    input[type=text], input[type=password] {
+      font-size: 30px;
+    }
+    .register-form h1 {
+      font-size: 60px;
+    }
+  }
 </style>
