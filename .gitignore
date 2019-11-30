@@ -2,3 +2,4 @@ client/node_modules
 *db
 server/secrets.py
 server/.env
+server/dist
