@@ -9,7 +9,7 @@
 
 <script>
 import navBar from './components/navBar.vue'
-import { isAuthenticated } from '../src/helpers.js'
+import { isAuthenticated } from './helpers.js'
 
 /* this page just mounts all the elements */
 export default {
