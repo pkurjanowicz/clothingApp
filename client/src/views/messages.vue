@@ -29,7 +29,7 @@
 <script>
 import axios from "axios";
 import { isAuthenticated } from '../helpers.js'
-import messagingModal from '/Users/peterkurjanowicz/Desktop/Interesting Projects/clothing_match_app/clothing_match_app/client/src/components/messagingModal.vue';
+import messagingModal from '../components/messagingModal.vue';
 
 export default {
     name: 'myMessages',

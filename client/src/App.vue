@@ -9,7 +9,7 @@
 
 <script>
 import navBar from './components/navBar.vue'
-import { isAuthenticated } from '/Users/peterkurjanowicz/Desktop/Interesting Projects/clothing_match_app/clothing_match_app/client/src/helpers.js'
+import { isAuthenticated } from '../src/helpers.js'
 
 /* this page just mounts all the elements */
 export default {
@@ -33,4 +33,48 @@ export default {
 </script>
 
 <style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+    background-color: white;
+    border: 3px;
+    border-color:  grey;
+    border-style: solid;
+    color: grey;
+    transition-duration: .3s;
+}
+
+button {
+    padding: 10px;
+    background-color: grey;
+    font-size: 15px;
+    color: white;
+    border: 3px;
+    border-color: grey;
+    border-style: solid;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+    margin: 10px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=file] {
+    display:none;
+}
 </style>

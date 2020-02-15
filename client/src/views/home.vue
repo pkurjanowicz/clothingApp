@@ -20,7 +20,7 @@
 <script>
 import axios from 'axios';
 import { isAuthenticated } from '../helpers.js'
-import modal from '/Users/peterkurjanowicz/Desktop/Interesting Projects/clothing_match_app/clothing_match_app/client/src/components/modal.vue';
+import modal from '../components/modal.vue';
 
 export default {
   name: 'homePage',

@@ -1,7 +1,7 @@
 <template>
     <div class="likedImages">
-        <p v-if="message">{{ message }}</p>
         <div class="images-box">
+            <p v-if="message">{{ message }}</p>
             <li v-for="image in likedImages" :key='image'>
                 <a :href="'/messages?user='+image[1]">
                     <div class="image-link-box">

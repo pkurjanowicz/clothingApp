@@ -21,7 +21,7 @@
 <script>
 import axios from "axios";
 import { isAuthenticated } from '../helpers.js'
-import profileModal from "/Users/peterkurjanowicz/Desktop/Interesting Projects/clothing_match_app/clothing_match_app/client/src/components/profileModal.vue"
+import profileModal from "../components/messagingModal.vue"
 
 export default {
     name: 'myProfile',
